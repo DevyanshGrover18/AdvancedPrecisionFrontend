@@ -5,19 +5,19 @@ const cards = [
     icon: Brain,
     title: "Design Capabilities",
     desc: "Integrated CAD/CAM workflows with advanced simulation for thermal analysis and material flow optimization.",
-    img: "/public/industry1.jpg",
+    img: "/industry1.jpg",
   },
   {
     icon: FlaskConical,
     title: "Research & Development",
     desc: "Continuous exploration of new alloys, coatings, and cooling technologies.",
-    img: "/public/industry2.jpg",
+    img: "/industry2.jpg",
   },
   {
     icon: ClipboardCheck,
     title: "Quality & Testing",
     desc: "Rigorous inspections and in-house trials ensure international standards.",
-    img: "/public/industry3.jpg",
+    img: "/industry3.jpg",
   },
 ];
 
