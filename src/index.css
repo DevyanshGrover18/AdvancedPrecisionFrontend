@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+.bg-primary {
+  background-color: #a4d145;
+}
+
+.text-primary {
+  color: #0f172a;
+}
+
+.text-secondary{
+  color: #a4d145;
+}
+
+/* Opacity variants */
+.bg-primary\/10 {
+  background-color: rgba(164, 209, 69, 0.1);
+}
+
+.bg-primary\/20 {
+  background-color: rgba(164, 209, 69, 0.2);
+}
+
+.bg-primary\/30 {
+  background-color: rgba(164, 209, 69, 0.3);
+}
+
+.bg-primary\/40 {
+  background-color: rgba(164, 209, 69, 0.4);
+}
+
+.bg-primary\/50 {
+  background-color: rgba(164, 209, 69, 0.5);
+}
+
+.bg-primary\/60 {
+  background-color: rgba(164, 209, 69, 0.6);
+}
+
+.bg-primary\/70 {
+  background-color: rgba(164, 209, 69, 0.7);
+}
+
+.bg-primary\/80 {
+  background-color: rgba(164, 209, 69, 0.8);
+}
+
+.bg-primary\/90 {
+  background-color: rgba(164, 209, 69, 0.9);
+}
