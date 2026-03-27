@@ -1,27 +1,105 @@
-import React from "react";
+import React, { useState } from "react";
 
 const CtaSection = () => {
+  const [contactNumber, setContactNumber] = useState("");
+
   return (
-    <section className="py-24 bg-primary" id="contact">
-      <div className="max-w-4xl mx-auto px-6 text-center space-y-8">
-        <h2 className="text-slate-900 text-4xl md:text-6xl font-black">
-          Ready to elevate your production?
+    <section
+      className="pb-10 pt-6 px-6 md:px-10 max-w-[1400px] mx-auto"
+      id="contact"
+    >
+      <div>
+        <h2 className="text-3xl text-secondary text-center md:text-4xl font-bold mb-2">
+          Get in Touch
         </h2>
-        <p className="text-slate-800 text-lg md:text-xl font-medium">
-          Partner with ACME DRINKTEC for world-class molding solutions that
-          drive efficiency and profitability.
+
+        <p className="text-primary text-center mb-8">
+          Tell us about your requirements and our team will get back to you with
+          the best solutions.
         </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <button className="bg-slate-900 text-white px-10 py-5 rounded-xl text-lg font-bold shadow-lg hover:bg-slate-800 transition-all">
-            Request a Consultation
-          </button>
-          <button className="bg-white text-slate-900 px-10 py-5 rounded-xl text-lg font-bold shadow-lg hover:bg-slate-50 transition-all">
-            Download Brochure
-          </button>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        {/* LEFT: FORM */}
+        <div>
+          <form className="space-y-5">
+            <input
+              type="text"
+              required
+              placeholder="Name *"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6b8e23]"
+            />
+            <input
+              type="text"
+              required
+              placeholder="Company Name"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6b8e23]"
+            />
+
+            <input
+              type="email"
+              required
+              placeholder="Email *"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6b8e23]"
+            />
+
+            <input
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              value={contactNumber}
+              onChange={(e) => setContactNumber(e.target.value.replace(/\D/g, ""))}
+              placeholder="Contact Number *"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6b8e23]"
+            />
+
+            <input
+              type="text"
+              required
+              placeholder="Address"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6b8e23]"
+            />
+
+            <textarea
+              rows="4"
+              placeholder="Your Enquiry"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6b8e23]"
+            ></textarea>
+
+            <button
+              type="submit"
+              className="w-full cursor-pointer bg-[#6b8e23] text-white py-3 rounded-md font-bold text-sm uppercase tracking-widest hover:opacity-90 transition"
+            >
+              Submit Enquiry
+            </button>
+          </form>
+        </div>
+
+        {/* RIGHT: IMAGE GRID */}
+        <div className="grid grid-cols-2 gap-4">
+          <img
+            src="/hero1.jpg"
+            alt=""
+            className="w-full h-[180px] object-cover rounded-lg"
+          />
+          <img
+            src="/hero2.jpg"
+            alt=""
+            className="w-full h-[180px] object-cover rounded-lg"
+          />
+          <img
+            src="/hero3.jpg"
+            alt=""
+            className="w-full h-[180px] object-cover rounded-lg"
+          />
+          <img
+            src="/industry1.jpg"
+            alt=""
+            className="w-full h-[180px] object-cover rounded-lg"
+          />
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default CtaSection;

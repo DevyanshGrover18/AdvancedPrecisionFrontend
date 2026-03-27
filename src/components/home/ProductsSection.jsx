@@ -29,42 +29,40 @@ const ProductsSection = () => {
   const product = products[active];
 
   return (
-    <section className="py-24 bg-white" id="products">
+    <section className="py-16 bg-white" id="products">
       <div className="max-w-7xl mx-auto px-6 md:px-20">
-
         {/* HEADER */}
         <div className="mb-12">
-          <h2 className="text-primary text-sm font-bold uppercase tracking-[0.2em]">
-            Product Catalog
+          <h2 className="text-secondary text-3xl text-center font-bold uppercase ">
+            Products
           </h2>
-          <h3 className="text-4xl font-black text-primary mt-3">
-            PRECISION MOLD TYPES
+          <h3 className="text-sm text-center font-medium text-primary mt-3">
+            We offer a variety of high quality molds for Single Stage ISBM for
+            the manufacturing of PET, PP, PC, PETG and TRITAN bottles. We
+            provide better mold matrix optimization which results in increased
+            volume production of containers.
           </h3>
         </div>
 
         {/* TABS */}
-        <div className="flex flex-wrap gap-4 mb-12">
+        <div className="flex flex-wrap gap-4 mb-12 mx-auto justify-center">
           {products.map((p, i) => (
             <button
               key={p.title}
               onClick={() => setActive(i)}
-              className={`pb-3 cursor-pointer text-sm font-bold transition relative ${
+              className={`px-3 py-2 border-primary rounded cursor-pointer text-sm font-m transition relative ${
                 active === i
-                  ? "text-primary"
+                  ? "text-primary border bg-primary/40"
                   : "text-gray-500 hover:text-black"
               }`}
             >
               {p.title}
-              {active === i && (
-                <span className="absolute left-0 bottom-0 w-full h-[2px] bg-primary" />
-              )}
             </button>
           ))}
         </div>
 
         {/* CONTENT */}
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-
           {/* IMAGE */}
           <div className="w-full h-[350px] md:h-[450px] rounded-2xl overflow-hidden">
             <div
@@ -75,7 +73,7 @@ const ProductsSection = () => {
 
           {/* TEXT */}
           <div className="space-y-6">
-            <h4 className="text-3xl md:text-4xl font-black text-primary">
+            <h4 className="text-3xl md:text-4xl font-medium text-primary">
               {product.title}
             </h4>
 
@@ -83,7 +81,7 @@ const ProductsSection = () => {
               {product.desc}
             </p>
 
-            <button className="inline-flex cursor-pointer items-center gap-2 bg-primary text-primary px-6 py-3 rounded-md font-bold hover:bg-[#587025] transition">
+            <button className="inline-flex cursor-pointer items-center gap-2 bg-primary text-primary px-6 py-3 rounded-md font-normal hover:bg-[#587025] transition">
               Explore More <ArrowRight size={18} />
             </button>
           </div>

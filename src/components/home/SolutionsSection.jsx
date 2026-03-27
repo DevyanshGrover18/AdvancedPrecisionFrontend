@@ -16,11 +16,11 @@ const SolutionsSection = () => {
       <div className="flex flex-col lg:flex-row gap-16 items-center">
         {/* Text */}
         <div className="lg:w-1/2 space-y-6">
-          <h2 className="text-secondary text-sm font-bold uppercase tracking-[3px]">
-            Our Expertise
+          <h2 className="text-secondary text-sm font-bold uppercase tracking-[1px]">
+            About us
           </h2>
-          <h3 className="text-primary text-4xl md:text-5xl font-black">
-            ACME DRINKTEC SOLUTIONS
+          <h3 className="text-primary text-4xl md:text-4xl font-bold uppercase">
+            Advanced Precision Solutions
           </h3>
           <p className="text-primary dark:text-slate-400 text-lg leading-relaxed">
             Specializing in high-quality single-stage molds for PET, PP, PC, and

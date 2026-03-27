@@ -6,7 +6,7 @@ const productLinks = ["PET Molds", "PP Containers", "Cap & Closures", "Custom Mo
 
 const Footer = ()=> {
   return (
-    <footer className="bg-slate-900 text-slate-400 py-20 px-6 md:px-20 border-t border-slate-800">
+    <footer className="bg-slate-900 text-slate-400 pt-10 pb-4 px-6 md:px-20 border-t border-slate-800">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
         {/* Brand */}
         <div className="space-y-6">
@@ -14,8 +14,8 @@ const Footer = ()=> {
             <div className="size-8 bg-primary rounded-lg flex items-center justify-center text-slate-900">
               <Cpu size={18} strokeWidth={2.5} />
             </div>
-            <h2 className="text-white text-xl font-black tracking-tight uppercase">
-              ACME DRINKTEC
+            <h2 className="text-white text-xl font-black tracking-tight">
+              AdvancedPrecicsion
             </h2>
           </div>
           <p className="text-sm leading-relaxed">
@@ -74,7 +74,7 @@ const Footer = ()=> {
           </h4>
           <div className="space-y-4 text-sm">
             <div className="flex items-start gap-3">
-              <MapPin size={20} className="text-primary shrink-0 mt-0.5" />
+              <MapPin size={20} className="text-secondary shrink-0 mt-0.5" />
               <p>
                 123 Industrial Hub, Tech City,
                 <br />
@@ -82,18 +82,18 @@ const Footer = ()=> {
               </p>
             </div>
             <div className="flex items-start gap-3">
-              <Phone size={20} className="text-primary shrink-0" />
+              <Phone size={20} className="text-secondary shrink-0" />
               <p>+91 (022) 2345 6789</p>
             </div>
             <div className="flex items-start gap-3">
-              <Map size={20} className="text-primary shrink-0" />
+              <Map size={20} className="text-secondary shrink-0" />
               <p>View on Map</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto pt-16 mt-16 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-bold uppercase tracking-widest">
+      <div className="max-w-7xl mx-auto pt-4 mt-4 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-bold uppercase tracking-widest">
         <p>© 2024 ACME DRINKTEC SOLUTIONS. ALL RIGHTS RESERVED.</p>
         <div className="flex gap-8">
           {["Privacy Policy", "Terms of Service", "Cookies Settings"].map((l) => (

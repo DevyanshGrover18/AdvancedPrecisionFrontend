@@ -23,7 +23,12 @@ const Navbar = () => {
   }, []);
 
   const handleNavigate = (location) => {
-    navigate(`/${location.toLowerCase().replace(/\s+/g, "-")}`);
+    const slug = location
+      .toLowerCase()
+      .replace(/&/g, "and")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+    navigate(`/${slug}`);
   };
 
   const mainLinks = [
@@ -32,7 +37,6 @@ const Navbar = () => {
     "DESIGN & ENGINEERING",
     "QUALITY & TESTING",
     "PRODUCTS",
-    "CLIENTS",
   ];
 
   const topLinks = ["HOME", "MEDIA", "VIDEO", "CAREERS", "CONTACT US"];
@@ -106,12 +110,12 @@ const Navbar = () => {
             <button
               key={item}
               onClick={() => handleNavigate(item)}
-              className="text-xs xl:text-sm font-semibold text-gray-800 hover:text-blue-600 transition whitespace-nowrap"
+              className="text-xs cursor-pointer xl:text-sm font-medium text-gray-800 hover:text-blue-600 transition whitespace-nowrap"
             >
               {item}
             </button>
           ))}
-          <button className="bg-[#a4d145] hover:bg-[#80a334] text-white px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold rounded-md transition whitespace-nowrap">
+          <button className="bg-[#a4d145] hover:bg-[#80a334] text-white px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium rounded-md transition whitespace-nowrap">
             BROCHURE
           </button>
         </nav>
@@ -156,7 +160,7 @@ const Navbar = () => {
               </button>
             ))}
           </div>
-          <button className="mt-2 bg-[#a4d145] text-white py-3 rounded-md font-semibold text-sm">
+          <button className="mt-2 bg-[#a4d145] text-white py-3 rounded-md  text-sm">
             BROCHURE
           </button>
         </div>
