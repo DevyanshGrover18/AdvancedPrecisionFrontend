@@ -39,7 +39,7 @@ const Navbar = () => {
     "PRODUCTS",
   ];
 
-  const topLinks = ["HOME", "MEDIA", "VIDEO", "CAREERS", "CONTACT US"];
+  const topLinks = ["HOME", "MEDIA", "CAREERS", "CONTACT US"];
 
   return (
     <header className="w-full bg-white sticky top-0 z-50 border-b">
@@ -55,7 +55,7 @@ const Navbar = () => {
           <span key={item} className="flex items-center gap-3">
             <button
               onClick={() => handleNavigate(item)}
-              className="hover:text-black font-medium whitespace-nowrap"
+              className="hover:text-black cursor-pointer font-medium whitespace-nowrap"
             >
               {item}
             </button>
