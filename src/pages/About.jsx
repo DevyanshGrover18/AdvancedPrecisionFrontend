@@ -1,31 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AboutHero from "../components/about/AboutHero";
 import AboutSidebar from "../components/about/AboutSidebar";
 import AboutContent from "../components/about/AboutContent";
 import TopBanner from "../components/TopBanner";
+import {useSearchParams} from "react-router-dom";
 
 const aboutSections = [
   {
     label: "Our Mission",
+    slug: "our-mission",
     title: "Engineered to solve real manufacturing problems.",
     image: "/about1.jpg",
     body: [
-      "We design tooling concepts that reduce friction in production, improve repeatability, and give teams a clearer path from prototype to scale.",
-      "This is dummy copy for now. Replace it later with the final company story, proof points, and specific positioning you want on the page.",
+      "Our mission is to provide reliable, high-performance mold solutions that enhance production efficiency and product quality for our clients.",
+      "We aim to build long-term partnerships by delivering precision, consistency, and value in every project we undertake.",
     ],
     stats: [
       { label: "Years in market", value: "25+" },
       { label: "Projects delivered", value: "1,200+" },
-      { label: "Lead time reduction", value: "18%" },
+      { label: "Clients Served", value: "50+" },
     ],
   },
   {
     label: "Management",
+    slug: "management",
     title: "A leadership team focused on precision and delivery.",
     image: "/industry2.jpg",
     body: [
-      "Our management team keeps engineering, operations, and customer support aligned so projects move forward without unnecessary handoffs.",
-      "Use this placeholder section to introduce leadership experience, operating philosophy, and how the team supports customer success.",
+      "Our management team brings extensive industry experience and technical expertise, guiding the company with a clear vision for growth and excellence.",
+      "With a focus on quality, efficiency, and innovation, our leadership ensures that every project is executed with precision and professionalism.",
     ],
     stats: [
       { label: "Leadership teams", value: "3" },
@@ -35,11 +38,12 @@ const aboutSections = [
   },
   {
     label: "Human Resource",
+    slug: "human-resource",
     title: "Skilled people behind every mold and every process.",
     image: "/industry3.jpg",
     body: [
-      "Our people are trained to work with discipline, consistency, and ownership. That is what keeps quality high across design, machining, and inspection.",
-      "This dummy section can later become employee culture, hiring focus, training programs, or team values.",
+      "We foster a work environment that encourages collaboration, accountability, and continuous improvement. Our team works closely across departments to ensure seamless execution, timely delivery, and consistent quality in every project.",
+      "Safety, discipline, and attention to detail are at the core of our daily operations.",
     ],
     stats: [
       { label: "Skilled specialists", value: "80+" },
@@ -50,7 +54,26 @@ const aboutSections = [
 ];
 
 const AboutPage = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // useEffect(() => {
+  //   const element = document.getElementById("about-hero");
+  //   setTimeout(() => {
+  //     element.scrollIntoView({ behavior: "smooth", block: "start" });
+  //   }, 200);
+  // }, [searchParams])
+  
+
+  const tabParam = searchParams.get("tab");
+  const activeIndex = Math.max(
+    0,
+    aboutSections.findIndex((s) => s.slug === tabParam), // -1 → 0 via max
+  );
+
+  const handleSelect = (index) => {
+    setSearchParams({ tab: aboutSections[index].slug });
+  };
+
   const activeSection = aboutSections[activeIndex];
 
   return (
@@ -62,7 +85,7 @@ const AboutPage = () => {
           <AboutSidebar
             items={aboutSections}
             activeIndex={activeIndex}
-            onSelect={setActiveIndex}
+            onSelect={handleSelect}
           />
           <AboutContent content={activeSection} />
         </section>

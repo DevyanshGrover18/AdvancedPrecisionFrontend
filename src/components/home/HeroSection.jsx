@@ -83,15 +83,13 @@ const HeroSection = () => {
           </span>
         </div>
 
-        <h1 className="text-white text-5xl md:text-7xl font-bold leading-none max-w-3xl">
-          CREATING MOLDS <br />
-          <span className="text-secondary">With a Difference</span>
+        <h1 className="text-white text-4xl md:text-6xl font-bold leading-none max-w-3xl">
+          Precision Mold Manufacturing <br />
+          <span className="text-secondary">for High-Performance Industries</span>
         </h1>
 
-        <p className="text-slate-300 text-lg md:text-lg max-w-2xl leading-relaxed">
-          Pioneering precision engineering for high-performance single-stage
-          molding solutions. We deliver excellence in every cavity for the
-          global packaging industry.
+        <p className="text-slate-300 text-sm md:text-[16px] max-w-2xl leading-relaxed">
+          We design and manufacture high-precision molds tailored to meet the evolving needs of industrial production, ensuring durability, efficiency, and consistent performance
         </p>
 
         <div className="flex gap-4 pt-4 flex-wrap">

@@ -10,7 +10,6 @@ const InfrastructureSection = () => {
 
   const startAutoplay = () => {
     if (!emblaApi) return;
-
     autoplayRef.current = setInterval(() => {
       emblaApi.scrollNext();
     }, 4000);
@@ -24,14 +23,12 @@ const InfrastructureSection = () => {
 
   useEffect(() => {
     if (!emblaApi) return;
-
     startAutoplay();
-
     return () => stopAutoplay();
   }, [emblaApi]);
 
   return (
-    <section className="relative h-[600px] w-full overflow-hidden">
+    <section className="relative h-[500px] md:h-[600px] w-full overflow-hidden">
       {/* Carousel */}
       <div className="absolute inset-0 overflow-hidden" ref={emblaRef}>
         <div className="flex h-full">
@@ -48,22 +45,29 @@ const InfrastructureSection = () => {
         </div>
       </div>
 
-      <div className="absolute left-6 top-6 z-20 bg-primary/50 px-10 py-12 text-sm text-white backdrop-blur-md md:left-1/6 md:top-1/4 h-100 w-120">
-        <div className="h-full w-full relative">
-            <h2 className="text-3xl mb-6 font-bold uppercase tracking-wider">
-              Infrastructure
-            </h2>
-            <h3 className="text-lg mb-6">
-              We have built our reputation in the industry on the strength of our
-              excellent products.
-            </h3>
-            <p className="text-md tracking-wide">
-              Our manufacturing plant for high-quality ADS molds is equipped with
-              a modern tool room that houses the latest and most sophisticated
-            machinery and processes to ensure the high levels of quality that we
-            look for in our products.
+      {/* Content Box */}
+      <div className="absolute inset-x-4 bottom-4 z-20 md:inset-x-auto md:bottom-auto md:left-[16.666%] md:top-1/4 bg-primary/50 backdrop-blur-md text-white px-6 py-8 md:px-10 md:py-12 w-auto md:w-[480px]">
+        <div className="relative">
+          <h2 className="text-2xl md:text-3xl mb-4 md:mb-6 font-bold uppercase tracking-wider">
+            Infrastructure
+          </h2>
+          <div className="text-sm md:text-[15px] tracking-wide leading-relaxed">
+            Our facility is equipped with cutting-edge machinery and technology
+            to deliver precision-driven results:
+            <ul className="list-disc pl-4 mt-2 space-y-1">
+              <li>CNC Machines</li>
+              <li>EDM Machines</li>
+              <li>VMC Units</li>
+              <li>Inspection & Quality Control Systems</li>
+            </ul>
+            <p className="mt-3">
+              We maintain strict quality standards at every stage of production
+              to ensure reliability and consistency.
             </p>
-          <div className="bottom-0 right-0 absolute flex gap-4">
+          </div>
+
+          {/* Nav Buttons */}
+          <div className="flex gap-3 mt-6 md:mt-8 justify-end">
             <button
               onClick={() => {
                 if (!emblaApi) return;
@@ -71,11 +75,10 @@ const InfrastructureSection = () => {
                 emblaApi.scrollPrev();
                 startAutoplay();
               }}
-              className="cursor-pointer z-10 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 p-3 rounded-full text-white transition"
+              className="cursor-pointer z-10 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 p-2 md:p-3 rounded-full text-white transition"
             >
-              <ChevronLeft size={24} />
+              <ChevronLeft size={20} />
             </button>
-
             <button
               onClick={() => {
                 if (!emblaApi) return;
@@ -83,12 +86,11 @@ const InfrastructureSection = () => {
                 emblaApi.scrollNext();
                 startAutoplay();
               }}
-              className="cursor-pointer z-10 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 p-3 rounded-full text-white transition"
+              className="cursor-pointer z-10 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 p-2 md:p-3 rounded-full text-white transition"
             >
-              <ChevronRight size={24} />
+              <ChevronRight size={20} />
             </button>
           </div>
-
         </div>
       </div>
     </section>

@@ -1,50 +1,57 @@
 import React from "react";
 import { Cpu, Globe, Mail, Share2, MapPin, Phone, Map } from "lucide-react";
 
-const quickLinks = ["Our History", "Career Opportunities", "Technical Support", "Sustainability"];
+const quickLinks = [
+  { title: "Our Mission", slug: "our-mission" },
+  { title: "Management", slug: "management" },
+  { title: "Human Resource", slug: "human-resource" },
+];
 const productLinks = ["PET Molds", "PP Containers", "Cap & Closures", "Custom Molds"];
 
-const Footer = ()=> {
+const Footer = () => {
   return (
-    <footer className="bg-slate-900 text-slate-400 pt-10 pb-4 px-6 md:px-20 border-t border-slate-800">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+    <footer className="bg-slate-100 text-slate-800 pt-10 pb-4 px-6 md:px-20 border-slate-800">
+      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
         {/* Brand */}
-        <div className="space-y-6">
+        <div className="col-span-2 md:col-span-1 space-y-6">
           <div className="flex items-center gap-3">
-            <div className="size-8 bg-primary rounded-lg flex items-center justify-center text-slate-900">
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-slate-900">
               <Cpu size={18} strokeWidth={2.5} />
             </div>
-            <h2 className="text-white text-xl font-black tracking-tight">
-              AdvancedPrecicsion
+            <h2 className="text-primary text-xl font-black tracking-tight">
+              AdvancedPrecision
             </h2>
           </div>
           <p className="text-sm leading-relaxed">
             Global leaders in high-precision mold manufacturing for the beverage
             and packaging industries. Delivering excellence since 1998.
           </p>
-          <div className="flex gap-4">
+          {/* <div className="flex gap-4">
             {[Globe, Mail, Share2].map((Icon, i) => (
               <a
                 key={i}
                 href="#"
-                className="size-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-slate-900 transition-all"
+                className="w-10 h-10 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center hover:bg-primary hover:text-slate-900 transition-all"
               >
                 <Icon size={18} />
               </a>
             ))}
-          </div>
+          </div> */}
         </div>
 
         {/* Quick Links */}
         <div className="space-y-6">
-          <h4 className="text-white font-bold text-lg uppercase tracking-wider">
-            Quick Links
+          <h4 className="text-primary font-bold text-lg uppercase tracking-wider">
+            About Us
           </h4>
           <ul className="space-y-4 text-sm">
             {quickLinks.map((l) => (
-              <li key={l}>
-                <a href="#" className="hover:text-primary transition-colors">
-                  {l}
+              <li key={l.slug}>
+                <a
+                  href={`about-us/?tab=${l.slug}`}
+                  className="hover:text-primary transition-colors"
+                >
+                  {l.title}
                 </a>
               </li>
             ))}
@@ -53,7 +60,7 @@ const Footer = ()=> {
 
         {/* Products */}
         <div className="space-y-6">
-          <h4 className="text-white font-bold text-lg uppercase tracking-wider">
+          <h4 className="text-primary font-bold text-lg uppercase tracking-wider">
             Products
           </h4>
           <ul className="space-y-4 text-sm">
@@ -68,8 +75,8 @@ const Footer = ()=> {
         </div>
 
         {/* Office */}
-        <div className="space-y-6">
-          <h4 className="text-white font-bold text-lg uppercase tracking-wider">
+        <div className="col-span-2 md:col-span-1 space-y-6">
+          <h4 className="text-primary font-bold text-lg uppercase tracking-wider">
             Office
           </h4>
           <div className="space-y-4 text-sm">
@@ -94,17 +101,19 @@ const Footer = ()=> {
       </div>
 
       <div className="max-w-7xl mx-auto pt-4 mt-4 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-bold uppercase tracking-widest">
-        <p>© 2024 ACME DRINKTEC SOLUTIONS. ALL RIGHTS RESERVED.</p>
-        <div className="flex gap-8">
-          {["Privacy Policy", "Terms of Service", "Cookies Settings"].map((l) => (
-            <a key={l} href="#" className="hover:text-primary transition-colors">
-              {l}
-            </a>
-          ))}
+        <p>© 2026 ADVANCED PRECISION. ALL RIGHTS RESERVED.</p>
+        <div className="">
+          Design and Development by {" "}
+          <a
+            href="https://codenap.in/"
+            className="text-primary underline"
+          >
+            Codenap
+          </a>
         </div>
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;

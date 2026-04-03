@@ -1,13 +1,21 @@
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const SHRINK_AT = 80; // px — shrink when scrolled past this
 const EXPAND_AT = 20; // px — expand when scrolled back under this
 
+const aboutDropdownItems = [
+  { label: "Our Mission", slug: "our-mission" },
+  { label: "Management", slug: "management" },
+  { label: "Human Resource", slug: "human-resource" },
+];
+
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,6 +37,12 @@ const Navbar = () => {
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "");
     navigate(`/${slug}`);
+  };
+
+  const handleAboutTabNavigate = (tabSlug) => {
+    navigate(`/about-us?tab=${tabSlug}`);
+    setAboutOpen(false);
+    setMenuOpen(false);
   };
 
   const mainLinks = [
@@ -106,15 +120,47 @@ const Navbar = () => {
 
         {/* DESKTOP NAV */}
         <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-          {mainLinks.map((item) => (
-            <button
-              key={item}
-              onClick={() => handleNavigate(item)}
-              className="text-xs cursor-pointer xl:text-sm font-medium text-gray-800 hover:text-blue-600 transition whitespace-nowrap"
-            >
-              {item}
-            </button>
-          ))}
+          {mainLinks.map((item) =>
+            item === "ABOUT US" ? (
+              // ── ABOUT US with dropdown ──
+              <div key={item} className="relative group">
+                <button
+                  onClick={() => handleNavigate(item)}
+                  className="flex items-center gap-1 text-xs xl:text-sm font-medium text-gray-800 hover:text-[#a4d145] transition whitespace-nowrap"
+                >
+                  {item}
+                  <ChevronDown
+                    size={14}
+                    className="transition-transform duration-200 group-hover:rotate-180"
+                  />
+                </button>
+
+                <div
+                  className="absolute top-full left-0 mt-2 w-44 bg-white border border-gray-100 rounded-md shadow-lg py-1 z-50 
+                  opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+                  transition-all duration-200"
+                >
+                  {aboutDropdownItems.map((tab) => (
+                    <button
+                      key={tab.slug}
+                      onClick={() => handleAboutTabNavigate(tab.slug)}
+                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[#a4d145]/10 hover:text-[#a4d145] transition"
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <button
+                key={item}
+                onClick={() => handleNavigate(item)}
+                className="text-xs cursor-pointer xl:text-sm font-medium text-gray-800 hover:text-[#a4d145] transition whitespace-nowrap"
+              >
+                {item}
+              </button>
+            ),
+          )}
           <button className="bg-[#a4d145] hover:bg-[#80a334] text-white px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium rounded-md transition whitespace-nowrap">
             BROCHURE
           </button>

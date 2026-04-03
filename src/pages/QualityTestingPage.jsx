@@ -19,23 +19,28 @@ const qualityPoints = [
 const testingPoints = [
   {
     icon: FlaskConical,
-    text: "Ultra-modern laboratory for advanced inspection and testing.",
+    title: "Dimensional Inspection: ",
+    text: "Ensuring tight tolerances and accurate measurements using precision instruments. Ultra-modern laboratory for advanced inspection and testing.",
   },
   {
     icon: Gauge,
-    text: "Advanced testing machinery and instruments to facilitate speedy testing processes.",
+    title: "Material Testing: ",
+    text: "Evaluating strength, hardness, and durability to ensure long-term performance.",
   },
   {
     icon: Scale,
-    text: "Flawless porting rules and consistent weight.",
+    title: "Functional Testing: ",
+    text: "Validating mold operation, alignment, and component performance under real conditions.",
   },
   {
     icon: Thermometer,
-    text: "Testing of each mold under stringent production conditions.",
+    title: "Surface & Finish Inspection: ",
+    text: "Checking for defects such as cracks, warpage, or surface inconsistencies.",
   },
   {
     icon: UserCheck,
-    text: "Experienced quality auditors keep close watch on individual testing process.",
+    title: "Performance Testing: ",
+    text: "Trial runs to ensure consistent output, smooth operation, and optimal cycle efficiency.",
   },
 ];
 
@@ -51,7 +56,6 @@ export default function QualityTestingPage() {
       <TopBanner title="Quality & Testing" />
 
       <main className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-20 space-y-20">
-
         {/* ── QUALITY SECTION ── */}
         <section className="space-y-10">
           {/* Section label */}
@@ -62,13 +66,18 @@ export default function QualityTestingPage() {
             </span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-black uppercase leading-none text-slate-900 max-w-2xl">
-            Quality is not a routine activity — it's a mission.
+          <h2 className="text-4xl md:text-3xl font-medium uppercase leading-none text-slate-900 max-w-2xl">
+            Commitment to Quality Excellence.
           </h2>
 
-          <p className="text-lg leading-relaxed text-slate-600 max-w-3xl">
-            At ADS, we believe that each and every variable or component involved in the formation of a mold system is of extreme importance for its final success. Therefore, we test and assess every minute detail to ensure that the final product is an epitome of flawlessness and perfection.
-          </p>
+          <div className="text-[16px] w-full leading-relaxed text-slate-600">
+            Quality is at the core of everything we do. Our comprehensive
+            quality control system ensures that every mold meets the highest
+            standards of precision, durability, and performance.
+            From raw material inspection to final delivery, each stage of our
+            process is carefully monitored and validated to deliver consistent
+            and reliable results.
+          </div>
 
           {/* Full-width lab image */}
           <div className="relative overflow-hidden rounded-3xl border border-slate-200 shadow-[0_20px_60px_rgba(15,23,42,0.10)]">
@@ -85,8 +94,7 @@ export default function QualityTestingPage() {
             </div>
           </div>
 
-          {/* Two-column: text left, image + highlight right */}
-          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] items-stretch">
+          {/* <div className="grid gap-10 lg:grid-cols-[1fr_1fr] items-stretch">
             <div className="space-y-6 flex flex-col justify-center">
               {qualityPoints.map((point, i) => (
                 <p key={i} className="text-base leading-relaxed text-slate-600">
@@ -94,25 +102,27 @@ export default function QualityTestingPage() {
                 </p>
               ))}
 
-              {/* Pull quote */}
               <blockquote className="border-l-4 border-[#a4d145] pl-5 py-1">
                 <p className="text-xl font-black uppercase leading-snug text-[#0f172a]">
-                  Our best-in-class manufacturing process renders lowest possible cavity-to-cavity weight and dimensional variation.
+                  Our best-in-class manufacturing process renders lowest
+                  possible cavity-to-cavity weight and dimensional variation.
                 </p>
               </blockquote>
 
               <p className="text-base leading-relaxed text-slate-600">
-                We choose supreme quality materials for both mold parts and base for unmatched resistance for wear and corrosion.
+                We choose supreme quality materials for both mold parts and base
+                for unmatched resistance for wear and corrosion.
               </p>
 
-              {/* Stats row */}
               <div className="grid grid-cols-3 gap-4 pt-2">
                 {stats.map((stat) => (
                   <div
                     key={stat.label}
                     className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
                   >
-                    <div className="text-2xl font-black text-slate-900">{stat.value}</div>
+                    <div className="text-2xl font-black text-slate-900">
+                      {stat.value}
+                    </div>
                     <div className="mt-1 text-[10px] uppercase tracking-[0.25em] text-slate-500">
                       {stat.label}
                     </div>
@@ -129,7 +139,7 @@ export default function QualityTestingPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a]/20 via-transparent to-[#a4d145]/15" />
             </div>
-          </div>
+          </div> */}
         </section>
 
         {/* ── DIVIDER ── */}
@@ -147,26 +157,25 @@ export default function QualityTestingPage() {
           <div className="grid gap-10 lg:grid-cols-[1fr_1fr] items-stretch">
             {/* Testing bullets left */}
             <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl font-black uppercase leading-none text-slate-900">
-                Tested under the most stringent conditions.
+              <h2 className="text-xl md:text-3xl font-medium uppercase leading-none text-slate-900">
+                Engineered Testing. Proven Performance.
               </h2>
-              <p className="text-lg leading-relaxed text-slate-600">
-                Every mold that leaves our facility has passed through a rigorous series of tests carried out by our experienced quality team using state-of-the-art equipment.
+              <p className="text-[16px] leading-relaxed text-slate-600">
+                Every mold that leaves our facility has passed through a
+                rigorous series of tests carried out by our experienced quality
+                team using state-of-the-art equipment.
               </p>
-
+              <h3 className="text-[16px] leading-relaxed text-slate-600">Our testing processes are designed to verify every critical aspect of mold performance:</h3>
               <ul className="space-y-4 pt-2">
                 {testingPoints.map((point, i) => {
                   const Icon = point.icon;
                   return (
-                    <li
-                      key={i}
-                      className="flex items-start gap-4 group"
-                    >
+                    <li key={i} className="flex items-start gap-4 group">
                       <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-2xl bg-[#0f172a] text-[#a4d145] group-hover:bg-[#a4d145] group-hover:text-[#0f172a] transition">
                         <Icon size={18} />
                       </div>
                       <p className="text-sm leading-relaxed text-slate-600 pt-2">
-                        {point.text}
+                        <strong>{point.title}</strong>{point.text}
                       </p>
                     </li>
                   );
@@ -194,7 +203,6 @@ export default function QualityTestingPage() {
             </div>
           </div>
         </section>
-
       </main>
     </div>
   );

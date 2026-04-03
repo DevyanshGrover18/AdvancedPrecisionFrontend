@@ -1,11 +1,11 @@
 const AboutHero = () => (
-  <header className="mb-16 md:mb-24 pt-10">
+  <header id="about-hero" className="mb-16 md:mb-24 pt-10">
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
       
       {/* LEFT */}
       <div className="lg:col-span-7">
         <span className="text-[#a4d145] font-bold tracking-[0.2em] uppercase text-xs mb-4 block">
-          Legacy of Precision
+          Who We Are
         </span>
 
         <h1 className="text-5xl md:text-5xl font-bold tracking-tight leading-none mb-6">
@@ -16,7 +16,8 @@ const AboutHero = () => (
         </h1>
 
         <p className="text-md text-gray-600 max-w-xl">
-          At Advanced Precision, we don't just manufacture molds; we engineer the high-precision backbone of the global beverage infrastructure.
+          We are a dedicated manufacturing company specializing in precision mold design and tooling solutions for modern industrial applications. With a strong foundation in engineering excellence, we focus on delivering high-quality molds that ensure consistent performance, durability, and efficiency. <br/>
+          Our expertise lies in combining advanced technology with practical industry experience to create solutions that meet the evolving needs of our clients.
         </p>
       </div>
 
