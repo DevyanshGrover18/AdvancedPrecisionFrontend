@@ -26,14 +26,24 @@ const products = [
 
 const ProductsSection = () => {
   const [active, setActive] = useState(0);
+  const [animating, setAnimating] = useState(false);
   const product = products[active];
+
+  const handleTabChange = (i) => {
+    if (i === active) return;
+    setAnimating(true);
+    setTimeout(() => {
+      setActive(i);
+      setAnimating(false);
+    }, 250);
+  };
 
   return (
     <section className="py-16 bg-white" id="products">
       <div className="max-w-7xl mx-auto px-6 md:px-20">
         {/* HEADER */}
         <div className="mb-12">
-          <h2 className="text-secondary text-3xl text-center font-bold uppercase ">
+          <h2 className="text-secondary text-3xl text-center font-bold uppercase">
             Products
           </h2>
           <h3 className="text-sm text-center font-medium text-primary mt-3">
@@ -49,14 +59,20 @@ const ProductsSection = () => {
           {products.map((p, i) => (
             <button
               key={p.title}
-              onClick={() => setActive(i)}
-              className={`px-3 py-2 border-primary rounded cursor-pointer text-sm font-m transition relative ${
+              onClick={() => handleTabChange(i)}
+              className={`px-3 py-2 border-primary rounded cursor-pointer text-sm font-m transition-all duration-300 relative ${
                 active === i
-                  ? "text-primary border bg-primary/40"
-                  : "text-gray-500 hover:text-black"
+                  ? "text-primary border bg-primary/40 scale-105"
+                  : "text-gray-500 hover:text-black hover:scale-105"
               }`}
             >
               {p.title}
+              {/* Active underline indicator */}
+              <span
+                className={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                  active === i ? "w-full" : "w-0"
+                }`}
+              />
             </button>
           ))}
         </div>
@@ -64,15 +80,25 @@ const ProductsSection = () => {
         {/* CONTENT */}
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* IMAGE */}
-          <div className="w-full h-[350px] md:h-[450px] rounded-2xl overflow-hidden">
+          <div
+            className={`w-full h-[350px] md:h-[450px] rounded-2xl overflow-hidden transition-all duration-300 ${
+              animating ? "opacity-0 scale-95" : "opacity-100 scale-100"
+            }`}
+          >
             <div
-              className="w-full h-full bg-cover bg-center transition-all duration-500"
+              className="w-full h-full bg-cover bg-center transition-all duration-700 hover:scale-105"
               style={{ backgroundImage: `url('${product.img}')` }}
             />
           </div>
 
           {/* TEXT */}
-          <div className="space-y-6">
+          <div
+            className={`space-y-6 transition-all duration-300 ${
+              animating
+                ? "opacity-0 translate-x-4"
+                : "opacity-100 translate-x-0"
+            }`}
+          >
             <h4 className="text-3xl md:text-4xl font-medium text-primary">
               {product.title}
             </h4>
@@ -81,7 +107,7 @@ const ProductsSection = () => {
               {product.desc}
             </p>
 
-            <button className="inline-flex cursor-pointer items-center gap-2 bg-primary text-primary px-6 py-3 rounded-md font-normal hover:bg-[#587025] transition">
+            <button className="inline-flex cursor-pointer items-center gap-2 bg-primary text-primary px-6 py-3 rounded-md font-normal hover:bg-[#587025] hover:gap-4 transition-all duration-300">
               Explore More <ArrowRight size={18} />
             </button>
           </div>

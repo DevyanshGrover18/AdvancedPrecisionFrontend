@@ -33,7 +33,7 @@ const SolutionsSection = () => {
             {stats.map((s) => (
               <div
                 key={s.label}
-                className="p-3 md:p-4 border-l-4 border-[#a4d145] rounded-r-xl"
+                className="p-3 md:p-4 border-l-4 hover:scale-105 transition-all duration-300 border-[#a4d145] rounded-r-xl"
               >
                 <p className="text-xl md:text-2xl text-primary font-bold">
                   {s.value}
@@ -47,11 +47,11 @@ const SolutionsSection = () => {
         {/* Images */}
         <div className="w-full lg:w-1/2 grid grid-cols-2 gap-3 md:gap-4">
           <div
-            className="aspect-square rounded-2xl overflow-hidden shadow-xl bg-cover bg-center"
+            className="aspect-square hover:scale-105 transition-all duration-300 rounded-2xl overflow-hidden shadow-xl bg-cover bg-center"
             style={{ backgroundImage: `url('${IMG1}')` }}
           />
           <div
-            className="aspect-square rounded-2xl overflow-hidden shadow-xl bg-cover bg-center mt-6 md:mt-8"
+            className="aspect-square hover:scale-105 transition-all duration-300 rounded-2xl overflow-hidden shadow-xl bg-cover bg-center mt-6 md:mt-8"
             style={{ backgroundImage: `url('${IMG2}')` }}
           />
         </div>

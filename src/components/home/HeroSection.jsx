@@ -93,9 +93,9 @@ const HeroSection = () => {
         </p>
 
         <div className="flex gap-4 pt-4 flex-wrap">
-          <button className="bg-primary hover:bg-primary/90 text-slate-900 px-8 py-4 rounded-xl text-base font-medium flex items-center gap-2">
-            Explore Our Products <ArrowRight size={18} />
-          </button>
+          <a href="/products" className="bg-primary hover:bg-primary/90 text-slate-900 group px-8 py-4 rounded-xl text-base font-medium flex items-center gap-2">
+            Explore Our Products <ArrowRight className="group-hover:translate-x-2 transition-transform duration-300" size={18} />
+          </a>
 
          
         </div>

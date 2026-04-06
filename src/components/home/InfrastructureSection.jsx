@@ -46,7 +46,7 @@ const InfrastructureSection = () => {
       </div>
 
       {/* Content Box */}
-      <div className="absolute inset-x-4 bottom-4 z-20 md:inset-x-auto md:bottom-auto md:left-[16.666%] md:top-1/4 bg-primary/50 backdrop-blur-md text-white px-6 py-8 md:px-10 md:py-12 w-auto md:w-[480px]">
+      <div className="absolute inset-x-4 bottom-4 z-20 md:inset-x-auto md:bottom-auto md:left-[16.666%] md:top-1/8 bg-primary/50 backdrop-blur-md text-white px-6 py-8 md:px-10 md:py-12 w-auto md:w-[480px]">
         <div className="relative">
           <h2 className="text-2xl md:text-3xl mb-4 md:mb-6 font-bold uppercase tracking-wider">
             Infrastructure
