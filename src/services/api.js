@@ -1,5 +1,5 @@
-// const DEFAULT_BASE_URL = "https://advancedprecisionbackend.onrender.com"
-const DEFAULT_BASE_URL = "http://localhost:8000"
+const DEFAULT_BASE_URL = "https://advancedprecisionbackend.onrender.com"
+//const DEFAULT_BASE_URL = "http://localhost:8000"
 
 const isFormData = (value) =>
   typeof FormData !== "undefined" && value instanceof FormData;
