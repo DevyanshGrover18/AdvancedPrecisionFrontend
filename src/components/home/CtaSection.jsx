@@ -26,20 +26,20 @@ const CtaSection = () => {
               type="text"
               required
               placeholder="Name *"
-              className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6b8e23]"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#50b8af]"
             />
             <input
               type="text"
               required
               placeholder="Company Name"
-              className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6b8e23]"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#50b8af]"
             />
 
             <input
               type="email"
               required
               placeholder="Email *"
-              className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6b8e23]"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#50b8af]"
             />
 
             <input
@@ -49,25 +49,25 @@ const CtaSection = () => {
               value={contactNumber}
               onChange={(e) => setContactNumber(e.target.value.replace(/\D/g, ""))}
               placeholder="Contact Number *"
-              className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6b8e23]"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#50b8af]"
             />
 
             <input
               type="text"
               required
               placeholder="Address"
-              className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6b8e23]"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#50b8af]"
             />
 
             <textarea
               rows="4"
               placeholder="Your Enquiry"
-              className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6b8e23]"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#50b8af]"
             ></textarea>
 
             <button
               type="submit"
-              className="w-full cursor-pointer bg-[#6b8e23] text-white py-3 rounded-md font-bold text-sm uppercase tracking-widest hover:opacity-90 transition"
+              className="w-full cursor-pointer bg-[#50b8af] text-white py-3 rounded-md font-bold text-sm uppercase tracking-widest hover:opacity-90 transition"
             >
               Submit Enquiry
             </button>

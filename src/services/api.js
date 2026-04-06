@@ -1,5 +1,5 @@
-const DEFAULT_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL ?? "http://localhost:800";
+// const DEFAULT_BASE_URL = "https://advancedprecisionbackend.onrender.com"
+const DEFAULT_BASE_URL = "http://localhost:8000"
 
 const isFormData = (value) =>
   typeof FormData !== "undefined" && value instanceof FormData;

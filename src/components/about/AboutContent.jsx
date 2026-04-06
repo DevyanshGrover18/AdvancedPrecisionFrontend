@@ -68,8 +68,8 @@ const AboutContent = ({ content }) => (
     <div className="mt-10 grid gap-4 sm:grid-cols-3">
       {content.stats.map((stat, i) => (
         <Reveal key={stat.label} delay={0.2 + i * 0.08}>
-          <div className="rounded-xl border border-gray-200 p-4 hover:border-[#a4d145] hover:shadow-md transition-all duration-300 group">
-            <div className="text-2xl font-black text-primary group-hover:text-[#a4d145] transition-colors duration-300">
+        <div className="rounded-xl border border-gray-200 p-4 hover:border-[#50b8af] hover:shadow-md transition-all duration-300 group">
+            <div className="text-2xl font-black text-primary group-hover:text-[#50b8af] transition-colors duration-300">
               {stat.value}
             </div>
             <div className="mt-1 text-xs uppercase tracking-[0.2em] text-gray-500">

@@ -1,36 +1,98 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
-const products = [
-  {
-    title: "Injection Molds",
-    desc: "High-precision multi-cavity systems designed for efficiency and consistency in large-scale production environments.",
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuD8wJMMegAVQbXSJa5TBfFFWrN5rvkqLQaHYUlN7_Ho3Ydz7oVkBEZ0hJ04OebisNwtuFkqJSRCThiEKzAZjnmlqZhyMBWLhLfyYOKhz_K_p3pLWdr4K3MMpcjUgv2WAfFEizRVb1YuR3ci1vli01gCT8CxK8dC5u6Nd7j8tIu1IlL_yAo4jqUXjNIqvJx8m5n6J1inN_Wr_1cOhtsx7XqNE3xFMqsUzSfKtT2CDKHiXauOW2G8rGWEI8qEYk5Gfdl_5MsUn84r3va0",
-  },
-  {
-    title: "Blow Molds",
-    desc: "Advanced multi-layer blow molding solutions for manufacturing durable and lightweight containers.",
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDpIRX1CZ6uxZhF7qkeyDdWAca2YDSQGQptbuCdBOXJIU3Rn8krScolkkRPxlw06KE2S6L-y1TqyD1sJJGmF-X3LmkPufm2Tvk6QkbLHEPgT2T5TTVtLNAGlPzNuldkT3dhAlm4yuDfGzdhNR4eaFI7MqaBszIBPX4cOkmpMuggW0cE5MQRjxBdczd7m3rB1My_D9uUFKvSAq8Fx7zCyF1-YTORk2-ugumARAYRmojqjPrgpe80PJqqQYwlDdxm-H1LR0Stbg0N4x3W",
-  },
-  {
-    title: "Preform Molds",
-    desc: "Optimized for fast cycle times and high-volume production with unmatched precision.",
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAjEMbPiCEd5YjJmnygkLPtBt3D7OW0M2QsO2skU2ztd2fnsgq2ZykXsI2sNFyWCpWZRBsK-EUsuo3MRiIspo5FGZPGMHmyOrpH9Otq3ibPpUDVZS876769RxatW0iiV5gNKVuyrkeLEv4Q6iFLOS2CaR-UfjRFTAmb1tEGiseJOHEJ1NAVyunA1BsJNEy29dpnPG_poqqQXi4ioio7f7mgWOnFfbaMbA_44fjZH_whUE7X5DrZ9l1tU1TuL83Zj3aIcLNLh6B7ooAI",
-  },
-  {
-    title: "Cap & Closure",
-    desc: "Custom and standard neck finishes engineered for reliability and compatibility.",
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDDC2vzEHFBjsYlz8J_oesg4Hub7PFv7M06FoXCXrsM4GC1MDHyTftH-3xJgpJZFaH-DMa1jrKZ213sAcqir2P9Hl95bfQ26pf6A5Lh0ZBqzX5kCdsG_bizj82g5xrUU23ZergDLJiCV6CRQ-FQl3EaRbtgJHdRFJxB3kFG-FFyIjqyeVElDOOZMFD7Re5POjN-hGpWuMaXmhsD-PMGuKW1srYvejutVpZ18-bL7nhpnO_1gRnAvp6msW5BiICQnEEMgkR02D_qM6IA",
-  },
-];
+const normalizeProducts = (payload) => {
+  if (Array.isArray(payload)) {
+    return payload;
+  }
+
+  if (Array.isArray(payload?.products)) {
+    return payload.products;
+  }
+
+  if (Array.isArray(payload?.data)) {
+    return payload.data;
+  }
+
+  if (Array.isArray(payload?.data?.products)) {
+    return payload.data.products;
+  }
+
+  return [];
+};
+
+const resolveImage = (product) =>
+  product?.image ??
+  product?.imageUrl ??
+  product?.url ??
+  product?.src ??
+  "";
+
+const resolveTitle = (product, index) =>
+  product?.name ??
+  product?.title ??
+  product?.productName ??
+  `Product ${index + 1}`;
+
+const resolveDescription = (product) =>
+  product?.description ??
+  product?.shortDescription ??
+  product?.details ??
+  "";
 
 const ProductsSection = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [active, setActive] = useState(0);
   const [animating, setAnimating] = useState(false);
-  const product = products[active];
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadProducts = async () => {
+      setLoading(true);
+      setError("");
+
+      try {
+        const response = await api.get("/api/products");
+        const nextProducts = normalizeProducts(response).filter(
+          (product) => product.isActive !== false,
+        );
+
+        if (isMounted) {
+          setProducts(nextProducts);
+          setActive(0);
+        }
+      } catch (err) {
+        if (isMounted) {
+          setError(
+            err instanceof Error ? err.message : "Failed to load products.",
+          );
+          setProducts([]);
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    loadProducts();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const visibleProducts = useMemo(() => products.slice(0, 4), [products]);
+  const product = visibleProducts[active] ?? null;
 
   const handleTabChange = (i) => {
-    if (i === active) return;
+    if (i === active || i < 0 || i >= visibleProducts.length) return;
     setAnimating(true);
     setTimeout(() => {
       setActive(i);
@@ -46,50 +108,55 @@ const ProductsSection = () => {
           <h2 className="text-secondary text-3xl text-center font-bold uppercase">
             Products
           </h2>
-          <h3 className="text-sm text-center font-medium text-primary mt-3">
-            We offer a variety of high quality molds for Single Stage ISBM for
-            the manufacturing of PET, PP, PC, PETG and TRITAN bottles. We
-            provide better mold matrix optimization which results in increased
-            volume production of containers.
-          </h3>
+        <h3 className="text-sm text-center font-medium text-primary mt-3">
+            {loading
+              ? "Loading products from the backend..."
+              : error
+                ? error
+                : "We offer a variety of high quality molds for Single Stage ISBM for the manufacturing of PET, PP, PC, PETG and TRITAN bottles. We provide better mold matrix optimization which results in increased volume production of containers."}
+        </h3>
         </div>
 
-        {/* TABS */}
-        <div className="flex flex-wrap gap-4 mb-12 mx-auto justify-center">
-          {products.map((p, i) => (
-            <button
-              key={p.title}
-              onClick={() => handleTabChange(i)}
-              className={`px-3 py-2 border-primary rounded cursor-pointer text-sm font-m transition-all duration-300 relative ${
-                active === i
-                  ? "text-primary border bg-primary/40 scale-105"
-                  : "text-gray-500 hover:text-black hover:scale-105"
-              }`}
-            >
-              {p.title}
-              {/* Active underline indicator */}
-              <span
-                className={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 ${
-                  active === i ? "w-full" : "w-0"
+        {!loading && !error && visibleProducts.length > 0 ? (
+          <div className="flex flex-wrap gap-4 mb-12 mx-auto justify-center">
+            {visibleProducts.map((p, i) => (
+              <button
+                key={p.id ?? p._id ?? p.name ?? p.title ?? i}
+                onClick={() => handleTabChange(i)}
+                className={`px-3 py-2 border-primary rounded cursor-pointer text-sm font-m transition-all duration-300 relative ${
+                  active === i
+                    ? "text-primary border bg-primary/40 scale-105"
+                    : "text-gray-500 hover:text-black hover:scale-105"
                 }`}
-              />
-            </button>
-          ))}
-        </div>
+              >
+                {resolveTitle(p, i)}
+                <span
+                  className={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                    active === i ? "w-full" : "w-0"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+        ) : null}
 
         {/* CONTENT */}
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* IMAGE */}
-          <div
-            className={`w-full h-[350px] md:h-[450px] rounded-2xl overflow-hidden transition-all duration-300 ${
-              animating ? "opacity-0 scale-95" : "opacity-100 scale-100"
-            }`}
-          >
+          {product ? (
             <div
-              className="w-full h-full bg-cover bg-center transition-all duration-700 hover:scale-105"
-              style={{ backgroundImage: `url('${product.img}')` }}
-            />
-          </div>
+              className={`w-full h-[350px] md:h-[450px] rounded-2xl overflow-hidden transition-all duration-300 ${
+                animating ? "opacity-0 scale-95" : "opacity-100 scale-100"
+              }`}
+            >
+              <div
+                className="w-full h-full bg-cover bg-center transition-all duration-700 hover:scale-105"
+                style={{ backgroundImage: `url('${resolveImage(product)}')` }}
+              />
+            </div>
+          ) : (
+            <div className="w-full h-[350px] md:h-[450px] rounded-2xl bg-slate-100" />
+          )}
 
           {/* TEXT */}
           <div
@@ -100,14 +167,14 @@ const ProductsSection = () => {
             }`}
           >
             <h4 className="text-3xl md:text-4xl font-medium text-primary">
-              {product.title}
+              {product ? resolveTitle(product, active) : "Products"}
             </h4>
 
             <p className="text-gray-600 text-lg leading-relaxed max-w-xl">
-              {product.desc}
+              {product ? resolveDescription(product) : "No products available right now."}
             </p>
 
-            <button className="inline-flex cursor-pointer items-center gap-2 bg-primary text-primary px-6 py-3 rounded-md font-normal hover:bg-[#587025] hover:gap-4 transition-all duration-300">
+            <button onClick={()=>navigate('/products')} className="inline-flex cursor-pointer items-center gap-2 bg-primary text-white px-6 py-3 rounded-md font-normal hover:bg-[#3fa79f] hover:gap-4 transition-all duration-300">
               Explore More <ArrowRight size={18} />
             </button>
           </div>

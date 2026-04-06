@@ -5,8 +5,14 @@ const quickLinks = [
   { title: "Our Mission", slug: "our-mission" },
   { title: "Management", slug: "management" },
   { title: "Human Resource", slug: "human-resource" },
+  {title: "Media", slug: "gallery"},
 ];
-const productLinks = ["PET Molds", "PP Containers", "Cap & Closures", "Custom Molds"];
+const productLinks = [
+  "PET Molds",
+  "PP Containers",
+  "Cap & Closures",
+  "Custom Molds",
+];
 
 const Footer = () => {
   return (
@@ -14,13 +20,9 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
         {/* Brand */}
         <div className="col-span-2 md:col-span-1 space-y-6">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-slate-900">
-              <Cpu size={18} strokeWidth={2.5} />
-            </div>
-            <h2 className="text-primary text-xl font-black tracking-tight">
-              AdvancedPrecision
-            </h2>
+          <div className="flex justify-center gap-3">
+            <img src="/logo.png" alt="" className="h-16 w-auto"/>
+            
           </div>
           <p className="text-sm leading-relaxed">
             Global leaders in high-precision mold manufacturing for the beverage
@@ -42,7 +44,7 @@ const Footer = () => {
         {/* Quick Links */}
         <div className="space-y-6">
           <h4 className="text-primary font-bold text-lg uppercase tracking-wider">
-            About Us
+            Quick Links
           </h4>
           <ul className="space-y-4 text-sm">
             {quickLinks.map((l) => (
@@ -88,14 +90,15 @@ const Footer = () => {
                 Pin - 400001, India
               </p>
             </div>
-            <div className="flex items-start gap-3">
+            <div className="flex gap-3 items-center">
               <Phone size={20} className="text-secondary shrink-0" />
-              <p>+91 (022) 2345 6789</p>
+              <div className="flex flex-col">
+                <p>+91 73039 37438</p>
+                <p>+91 88828 50571</p>
+                <p>+91 70044 14127</p>
+              </div>
             </div>
-            <div className="flex items-start gap-3">
-              <Map size={20} className="text-secondary shrink-0" />
-              <p>View on Map</p>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -103,11 +106,8 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto pt-4 mt-4 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-bold uppercase tracking-widest">
         <p>© 2026 ADVANCED PRECISION. ALL RIGHTS RESERVED.</p>
         <div className="">
-          Design and Development by {" "}
-          <a
-            href="https://codenap.in/"
-            className="text-primary underline"
-          >
+          Design and Developed by{" "}
+          <a href="https://codenap.in/" className="text-primary underline">
             Codenap
           </a>
         </div>

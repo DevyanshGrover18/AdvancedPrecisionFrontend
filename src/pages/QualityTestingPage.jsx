@@ -84,15 +84,15 @@ export default function QualityTestingPage() {
         }
       `}</style>
 
-      <TopBanner title="Quality & Testing" />
+      <TopBanner title="Quality & Testing" imageName="qualityBanner.jpeg" />
 
       <main className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-20 space-y-20">
 
         {/* ── QUALITY SECTION ── */}
         <section className="space-y-10">
           <Reveal delay={0}>
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#a4d145]/30 bg-[#a4d145]/10 px-3 py-1">
-              <span className="h-2 w-2 rounded-full bg-[#a4d145]" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#50b8af]/30 bg-[#50b8af]/10 px-3 py-1">
+              <span className="h-2 w-2 rounded-full bg-[#50b8af]" />
               <span className="text-[10px] font-bold uppercase tracking-[0.35em] text-[#0f172a]">
                 Quality
               </span>
@@ -124,9 +124,9 @@ export default function QualityTestingPage() {
                 alt="Quality lab"
                 className="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#0f172a]/30 via-transparent to-[#a4d145]/10" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#0f172a]/30 via-transparent to-[#50b8af]/10" />
               <div className="absolute bottom-6 left-6 bg-[#0f172a]/80 backdrop-blur-sm rounded-2xl px-5 py-3">
-                <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#a4d145]">
+                <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#50b8af]">
                   In-House Quality Lab
                 </span>
               </div>
@@ -142,8 +142,8 @@ export default function QualityTestingPage() {
         {/* ── TESTING SECTION ── */}
         <section className="space-y-10">
           <Reveal delay={0}>
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#a4d145]/30 bg-[#a4d145]/10 px-3 py-1">
-              <span className="h-2 w-2 rounded-full bg-[#a4d145]" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#50b8af]/30 bg-[#50b8af]/10 px-3 py-1">
+              <span className="h-2 w-2 rounded-full bg-[#50b8af]" />
               <span className="text-[10px] font-bold uppercase tracking-[0.35em] text-[#0f172a]">
                 Testing
               </span>
@@ -180,7 +180,7 @@ export default function QualityTestingPage() {
                   return (
                     <Reveal key={i} delay={0.18 + i * 0.08}>
                       <li className="flex items-start gap-4 group">
-                        <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-2xl bg-[#0f172a] text-[#a4d145] group-hover:bg-[#a4d145] group-hover:text-[#0f172a] transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                        <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-2xl bg-[#0f172a] text-[#50b8af] group-hover:bg-[#50b8af] group-hover:text-[#0f172a] transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
                           <Icon size={18} />
                         </div>
                         <p className="text-sm leading-relaxed text-slate-600 pt-2">
@@ -202,8 +202,8 @@ export default function QualityTestingPage() {
                   alt="Testing process"
                   className="w-full h-full object-cover min-h-[400px] transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-tl from-[#0f172a]/30 via-transparent to-[#a4d145]/10" />
-                <div className="absolute top-6 right-6 bg-[#a4d145] rounded-2xl px-4 py-3 shadow-lg">
+                <div className="absolute inset-0 bg-gradient-to-tl from-[#0f172a]/30 via-transparent to-[#50b8af]/10" />
+                <div className="absolute top-6 right-6 bg-[#50b8af] rounded-2xl px-4 py-3 shadow-lg">
                   <div className="flex items-center gap-2">
                     <ShieldCheck size={18} className="text-[#0f172a]" />
                     <span className="text-xs font-black uppercase tracking-[0.2em] text-[#0f172a]">

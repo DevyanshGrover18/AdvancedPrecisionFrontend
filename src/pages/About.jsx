@@ -78,7 +78,7 @@ const AboutPage = () => {
 
   return (
     <div className="font-sans">
-      <TopBanner title={"About Us"} />
+      <TopBanner title={"About Us"} imageName={'aboutBanner.jpeg'} />
       <main className="max-w-350 mx-auto px-6 md:px-12">
         <AboutHero />
         <section className="grid grid-cols-1 lg:grid-cols-12">

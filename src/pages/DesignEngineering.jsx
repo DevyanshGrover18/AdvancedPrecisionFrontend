@@ -92,7 +92,7 @@ export default function DesignEngineeringPage() {
         }
       `}</style>
 
-      <TopBanner title="Design & Engineering" />
+      <TopBanner title="Design & Engineering" imageName='designBanner.jpeg' />
 
       <main className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-20">
         {/* TABS */}
@@ -105,14 +105,14 @@ export default function DesignEngineeringPage() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`cursor-pointer px-5 py-3 text-sm font-bold uppercase tracking-[0.18em] transition-all duration-300 relative ${
                   active
-                    ? "border-[#a4d145] border-x border-b-3 text-slate-900 shadow-lg shadow-[#a4d145]/20"
+                    ? "border-[#50b8af] border-x border-b-3 text-slate-900 shadow-lg shadow-[#50b8af]/20"
                     : "text-slate-500 hover:border-slate-300 hover:text-slate-900"
                 }`}
               >
                 {tab.label}
                 {/* animated underline */}
                 <span
-                  className="absolute bottom-0 left-0 h-0.5 bg-[#a4d145] transition-all duration-300"
+                  className="absolute bottom-0 left-0 h-0.5 bg-[#50b8af] transition-all duration-300"
                   style={{ width: active ? "100%" : "0%" }}
                 />
               </button>
@@ -152,14 +152,14 @@ export default function DesignEngineeringPage() {
                   className="relative"
                   style={{ animation: "fadeSlideUp 0.5s ease 0.15s both" }}
                 >
-                  <div className="absolute -left-4 -top-4 h-24 w-24 rounded-full bg-[#a4d145]/20 blur-2xl" />
+                  <div className="absolute -left-4 -top-4 h-24 w-24 rounded-full bg-[#50b8af]/20 blur-2xl" />
                   <div className="relative overflow-hidden rounded-4xl border border-slate-200 shadow-[0_20px_70px_rgba(15,23,42,0.12)] group">
                     <img
                       src="/industry1.jpg"
                       alt="Design capabilities"
                       className="h-105 w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-linear-to-tr from-[#0f172a]/30 via-transparent to-[#a4d145]/20" />
+                    <div className="absolute inset-0 bg-linear-to-tr from-[#0f172a]/30 via-transparent to-[#50b8af]/20" />
                   </div>
                 </div>
               </div>
@@ -183,16 +183,16 @@ export default function DesignEngineeringPage() {
                     return (
                       <div
                         key={index}
-                        className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[#a4d145]/40"
+                        className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[#50b8af]/40"
                         style={{
                           animation: `fadeSlideUp 0.5s ease ${0.25 + index * 0.08}s both`,
                         }}
                       >
                         <div className="flex items-center justify-between">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0f172a] text-[#a4d145] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0f172a] text-[#50b8af] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
                             <Icon size={22} />
                           </div>
-                          <div className="text-5xl font-black text-slate-100 transition-colors duration-300 group-hover:text-[#a4d145]/20">
+                          <div className="text-5xl font-black text-slate-100 transition-colors duration-300 group-hover:text-[#50b8af]/20">
                             0{index + 1}
                           </div>
                         </div>
@@ -214,8 +214,8 @@ export default function DesignEngineeringPage() {
               >
                 <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] items-center">
                   <div className="space-y-6">
-                    <div className="inline-flex items-center gap-2 rounded-full border border-[#a4d145]/30 bg-[#a4d145]/10 px-3 py-1">
-                      <span className="h-2 w-2 rounded-full bg-[#a4d145]" />
+                    <div className="inline-flex items-center gap-2 rounded-full border border-[#50b8af]/30 bg-[#50b8af]/10 px-3 py-1">
+                      <span className="h-2 w-2 rounded-full bg-[#50b8af]" />
                       <span className="text-[10px] font-bold uppercase tracking-[0.35em] text-[#0f172a]">
                         Research and Development
                       </span>
@@ -235,14 +235,14 @@ export default function DesignEngineeringPage() {
                   </div>
 
                   <div className="relative">
-                    <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-[#a4d145]/20 blur-2xl" />
+                    <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-[#50b8af]/20 blur-2xl" />
                     <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 shadow-[0_20px_70px_rgba(15,23,42,0.12)] group">
                       <img
                         src="/industry2.jpg"
                         alt="Research and development"
                         className="h-[420px] w-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-tr from-[#0f172a]/35 via-transparent to-[#a4d145]/15" />
+                      <div className="absolute inset-0 bg-gradient-to-tr from-[#0f172a]/35 via-transparent to-[#50b8af]/15" />
                     </div>
                   </div>
                 </div>
@@ -255,7 +255,7 @@ export default function DesignEngineeringPage() {
               >
                 <div className="mb-10 flex items-end justify-between gap-4">
                   <div>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.35em] text-[#a4d145] mb-2">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.35em] text-[#50b8af] mb-2">
                       What We Focus On
                     </p>
                     <h3 className="text-2xl md:text-3xl font-black uppercase text-slate-900 leading-tight">
@@ -279,15 +279,15 @@ export default function DesignEngineeringPage() {
                         }}
                       >
                         <div className="flex items-center justify-between">
-                          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#0f172a] text-[#a4d145] transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#0f172a] text-[#50b8af] transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
                             <Icon size={18} />
                           </div>
-                          <span className="text-3xl font-black text-slate-100 group-hover:text-[#a4d145]/20 transition-colors duration-300">
+                          <span className="text-3xl font-black text-slate-100 group-hover:text-[#50b8af]/20 transition-colors duration-300">
                             {String(index + 1).padStart(2, "0")}
                           </span>
                         </div>
                         <div>
-                          <div className="w-6 h-0.5 bg-[#a4d145] mb-3 transition-all duration-300 group-hover:w-10" />
+                          <div className="w-6 h-0.5 bg-[#50b8af] mb-3 transition-all duration-300 group-hover:w-10" />
                           <h4 className="text-sm font-bold uppercase tracking-wide text-slate-900 mb-2 leading-snug">
                             {cap.title}
                           </h4>

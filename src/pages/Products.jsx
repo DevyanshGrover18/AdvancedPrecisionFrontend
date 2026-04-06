@@ -63,7 +63,7 @@ const ProductsPage = () => {
 
   return (
     <main className="min-h-screen bg-slate-50">
-      <TopBanner title="Products" />
+      <TopBanner title="Products" imageName='productBanner.jpeg' />
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 md:px-10 lg:px-12">
         <ProductsPageHeader />
 

@@ -23,7 +23,7 @@ const AdminSidebar = ({ sections, onLogout }) => {
               }`
             }
           >
-            <span>{section.label}</span>
+          <span>{section.label}</span>
           </NavLink>
         ))}
       </div>
@@ -31,7 +31,7 @@ const AdminSidebar = ({ sections, onLogout }) => {
       <button
         type="button"
         onClick={onLogout}
-        className="mt-4 w-full rounded-2xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-[#a4d145] hover:text-slate-900"
+        className="mt-4 w-full rounded-2xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-[#50b8af] hover:text-slate-900"
       >
         Logout
       </button>

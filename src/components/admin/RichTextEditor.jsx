@@ -6,8 +6,8 @@ import Placeholder from "@tiptap/extension-placeholder";
 const toolbarButtonClass = (active) =>
   `rounded-lg border px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] transition ${
     active
-      ? "border-[#a4d145] bg-[#f4f8e7] text-slate-900"
-      : "border-slate-300 text-slate-600 hover:border-[#a4d145] hover:text-slate-900"
+      ? "border-[#50b8af] bg-[#ecf9f8] text-slate-900"
+      : "border-slate-300 text-slate-600 hover:border-[#50b8af] hover:text-slate-900"
   }`;
 
 const RichTextEditor = ({ value, onChange, placeholder = "Write more details..." }) => {
@@ -24,7 +24,7 @@ const RichTextEditor = ({ value, onChange, placeholder = "Write more details..."
     editorProps: {
       attributes: {
         class:
-          "tiptap min-h-40 rounded-b-2xl border border-slate-300 bg-white px-4 py-3 text-sm leading-7 text-slate-800 outline-none focus:border-[#a4d145] focus:ring-2 focus:ring-[#a4d145]/20",
+          "tiptap min-h-40 rounded-b-2xl border border-slate-300 bg-white px-4 py-3 text-sm leading-7 text-slate-800 outline-none focus:border-[#50b8af] focus:ring-2 focus:ring-[#50b8af]/20",
       },
     },
     onUpdate: ({ editor: currentEditor }) => {

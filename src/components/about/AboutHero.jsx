@@ -43,7 +43,7 @@ const AboutHero = () => (
       {/* LEFT */}
       <div className="lg:col-span-7 space-y-6">
         <Reveal delay={0}>
-          <span className="text-[#a4d145] font-bold tracking-[0.2em] uppercase text-xs block">
+          <span className="text-[#50b8af] font-bold tracking-[0.2em] uppercase text-xs block">
             Who We Are
           </span>
         </Reveal>
@@ -51,7 +51,7 @@ const AboutHero = () => (
         <Reveal delay={0.1}>
           <h1 className="text-5xl font-bold tracking-tight leading-none">
             Architecting the Future of{" "}
-            <span className="text-[#a4d145]">Industrial Molding.</span>
+            <span className="text-[#50b8af]">Industrial Molding.</span>
           </h1>
         </Reveal>
 
@@ -80,7 +80,7 @@ const AboutHero = () => (
           />
         </div>
         <div
-          className="absolute text-white -bottom-6 -left-6 bg-[#a4d145] p-6 rounded-xl shadow-xl hidden md:block"
+          className="absolute text-white -bottom-6 -left-6 bg-[#50b8af] p-6 rounded-xl shadow-xl hidden md:block"
           style={{
             animation: "badgePop 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.5s both",
           }}

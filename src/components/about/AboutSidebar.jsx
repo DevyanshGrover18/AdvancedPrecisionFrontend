@@ -10,7 +10,7 @@ const AboutSidebar = ({ items, activeIndex, onSelect }) => (
           onClick={() => onSelect(i)}
           className={`flex justify-between items-center px-6 py-4 rounded-xl text-left uppercase text-sm font-bold transition-all duration-300 ${
             i === activeIndex
-              ? "bg-[#a4d145] text-white scale-[1.02] shadow-md shadow-[#a4d145]/30"
+              ? "bg-[#50b8af] text-white scale-[1.02] shadow-md shadow-[#50b8af]/30"
               : "text-gray-500 hover:bg-gray-100 hover:text-gray-800 hover:translate-x-1"
           }`}
         >

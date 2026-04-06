@@ -7,11 +7,14 @@ import Navbar from './components/Navbar';
 import AboutPage from './pages/About';
 import DesignEngineeringPage from './pages/DesignEngineering';
 import QualityTestingPage from './pages/QualityTestingPage';
+import ContactUsPage from './pages/ContactUs';
+import InfrastructurePage from './pages/Infrastructure';
 import AdminLogin from './pages/AdminLogin';
 import AdminLayout from './pages/admin/Layout';
 import AdminOverview from './pages/admin/Overview';
 import AdminProducts from './pages/admin/Products';
-import AdminMedia from './pages/admin/Media';
+import AdminGallery from './pages/admin/Gallery';
+import PublicGallery from './pages/Gallery';
 
 const AppShell = () => {
   const location = useLocation();
@@ -25,14 +28,19 @@ const AppShell = () => {
           <Route path='/home' element={<Home/>} />
           <Route path='/products' element={<ProductsPage/>} />
           <Route path='/about-us' element={<AboutPage/>} />
+          <Route path='/infrastructure' element={<InfrastructurePage/>} />
           <Route path='/design-and-engineering' element={<DesignEngineeringPage/>} />
           <Route path='/quality-and-testing' element={<QualityTestingPage/>} />
+          <Route path='/contact-us' element={<ContactUsPage/>} />
+          <Route path='/gallery' element={<PublicGallery/>} />
+          <Route path='/media' element={<Navigate to='/gallery' replace />} />
           <Route path='/admin/login' element={<AdminLogin/>} />
           <Route path='/admin' element={<AdminLayout/>}>
             <Route index element={<Navigate to='overview' replace />} />
             <Route path='overview' element={<AdminOverview/>} />
             <Route path='products' element={<AdminProducts/>} />
-            <Route path='media' element={<AdminMedia/>} />
+            <Route path='gallery' element={<AdminGallery/>} />
+            <Route path='media' element={<Navigate to='gallery' replace />} />
           </Route>
           <Route path='*' element={<Navigate to='/' replace />} />
         </Routes>

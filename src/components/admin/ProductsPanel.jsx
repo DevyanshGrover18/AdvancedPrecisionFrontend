@@ -13,7 +13,7 @@ const ProductsPanel = ({ products, loading, activeCount, onNewProduct, onEdit, o
         <button
           type="button"
           onClick={onNewProduct}
-          className="rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-[#a4d145] hover:text-slate-900"
+          className="rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-[#50b8af] hover:text-slate-900"
         >
           New Product
         </button>

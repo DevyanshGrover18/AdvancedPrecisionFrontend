@@ -5,7 +5,7 @@ import { clearAdminToken, getAdminToken } from "../../services/admin";
 const sections = [
   { id: "overview", label: "Overview", to: "/admin/overview" },
   { id: "products", label: "Products", to: "/admin/products" },
-  { id: "media", label: "Media", to: "/admin/media" },
+  { id: "gallery", label: "Gallery", to: "/admin/gallery" },
 ];
 
 const AdminLayout = () => {
@@ -27,7 +27,7 @@ const AdminLayout = () => {
         <div className="mb-8 rounded-[2rem] border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.35em] text-[#416900]">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.35em] text-[#50b8af]">
                 Admin Panel
               </p>
               <h1 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">

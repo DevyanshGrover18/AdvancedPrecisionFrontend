@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ProductModal from "../../components/admin/ProductModal";
 import ProductsPanel from "../../components/admin/ProductsPanel";
-import { adminApi } from "../../services/admin";
+import { adminApi, uploadProductImage } from "../../services/admin";
 import useAdminProducts from "./useAdminProducts";
 
 const emptyExtraField = () => ({ key: "", value: "" });
@@ -77,12 +77,15 @@ const Products = () => {
   const [editingId, setEditingId] = useState(null);
   const [form, setForm] = useState(emptyForm);
   const [productModalOpen, setProductModalOpen] = useState(false);
+  const [selectedImageFile, setSelectedImageFile] = useState(null);
+  const [imageUploading, setImageUploading] = useState(false);
 
   const activeCount = products.filter((product) => product.isActive !== false).length;
 
   const resetForm = () => {
     setEditingId(null);
     setForm(emptyForm);
+    setSelectedImageFile(null);
   };
 
   const openCreateModal = () => {
@@ -96,6 +99,7 @@ const Products = () => {
     setProductModalOpen(false);
     setError("");
     setMessage("");
+    setSelectedImageFile(null);
   };
 
   const handleFieldChange = (field, value) => {
@@ -139,10 +143,62 @@ const Products = () => {
       isActive: product.isActive !== false,
       extraFields: splitProductFields(product),
     });
+    setSelectedImageFile(null);
     setMessage("Editing product.");
     setError("");
     setProductModalOpen(true);
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleImageFileChange = (event) => {
+    const file = event.target.files?.[0] ?? null;
+    setSelectedImageFile(file);
+    setError("");
+  };
+
+  const handleUploadImage = async () => {
+    if (!selectedImageFile) {
+      setError("Select an image file first.");
+      return;
+    }
+
+    setImageUploading(true);
+    setError("");
+    setMessage("");
+
+    try {
+      const response = await uploadProductImage({
+        image: selectedImageFile,
+        productId: editingId ?? undefined,
+      });
+
+      const imageUrl =
+        response?.imageUrl ??
+        response?.data?.imageUrl ??
+        response?.data?.product?.image ??
+        response?.product?.image ??
+        "";
+
+      if (!imageUrl) {
+        throw new Error("Image uploaded, but no image URL was returned.");
+      }
+
+      setForm((current) => ({ ...current, image: imageUrl }));
+      setMessage("Product image uploaded successfully.");
+
+      if (editingId) {
+        setProducts((current) =>
+          current.map((item) => {
+            const itemId = item.id ?? item._id;
+            return itemId === editingId ? { ...item, image: imageUrl } : item;
+          }),
+        );
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to upload image.");
+    } finally {
+      setImageUploading(false);
+    }
   };
 
   const handleDelete = async (product) => {
@@ -245,10 +301,14 @@ const Products = () => {
         saving={saving}
         error={error}
         message={message}
+        selectedImageFile={selectedImageFile}
+        imageUploading={imageUploading}
         onClose={closeProductModal}
         onSubmit={handleSubmit}
         onReset={resetForm}
         onFieldChange={handleFieldChange}
+        onImageFileChange={handleImageFileChange}
+        onUploadImage={handleUploadImage}
         onExtraFieldChange={handleExtraFieldChange}
         onAddExtraField={addExtraField}
         onRemoveExtraField={removeExtraField}

@@ -67,7 +67,7 @@ const AdminLogin = () => {
                   onChange={(event) => setUsername(event.target.value)}
                   type="text"
                   autoComplete="username"
-                  className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[#a4d145] focus:ring-2 focus:ring-[#a4d145]/20"
+                  className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[#50b8af] focus:ring-2 focus:ring-[#50b8af]/20"
                   placeholder="Enter username"
                   required
                 />
@@ -82,7 +82,7 @@ const AdminLogin = () => {
                   onChange={(event) => setPassword(event.target.value)}
                   type="password"
                   autoComplete="current-password"
-                  className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[#a4d145] focus:ring-2 focus:ring-[#a4d145]/20"
+                  className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[#50b8af] focus:ring-2 focus:ring-[#50b8af]/20"
                   placeholder="Enter password"
                   required
                 />

@@ -33,7 +33,7 @@ const SolutionsSection = () => {
             {stats.map((s) => (
               <div
                 key={s.label}
-                className="p-3 md:p-4 border-l-4 hover:scale-105 transition-all duration-300 border-[#a4d145] rounded-r-xl"
+                className="p-3 md:p-4 border-l-4 hover:scale-105 transition-all duration-300 border-[#50b8af] rounded-r-xl"
               >
                 <p className="text-xl md:text-2xl text-primary font-bold">
                   {s.value}
@@ -52,7 +52,7 @@ const SolutionsSection = () => {
           />
           <div
             className="aspect-square hover:scale-105 transition-all duration-300 rounded-2xl overflow-hidden shadow-xl bg-cover bg-center mt-6 md:mt-8"
-            style={{ backgroundImage: `url('${IMG2}')` }}
+            style={{ backgroundImage: `url('/solutions-1.jpeg')` }}
           />
         </div>
       </div>

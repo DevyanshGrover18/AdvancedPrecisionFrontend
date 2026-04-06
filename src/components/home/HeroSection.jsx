@@ -38,8 +38,11 @@ const HeroSection = () => {
           {slides.map((img, index) => (
             <div key={index} className="min-w-full h-full relative">
               <div
-                className="absolute inset-0 bg-cover bg-center"
+                className="absolute inset-0 bg-cover bg-center bg-fixed"
                 style={{
+                  backgroundAttachment: "fixed",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
                   backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.2)), url('${img}')`,
                 }}
               />
@@ -76,7 +79,7 @@ const HeroSection = () => {
 
       {/* 🔹 CONTENT */}
       <div className="relative h-full max-w-7xl mx-auto px-6 md:px-20 flex flex-col justify-center items-start gap-6">
-        <div className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-md border border-[#a4d145] px-3 py-1 rounded-full">
+        <div className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-md border border-[#50b8af] px-3 py-1 rounded-full">
           <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
           <span className="text-secondary text-xs font-bold uppercase tracking-widest">
             Industry Leader
@@ -93,7 +96,7 @@ const HeroSection = () => {
         </p>
 
         <div className="flex gap-4 pt-4 flex-wrap">
-          <a href="/products" className="bg-primary hover:bg-primary/90 text-slate-900 group px-8 py-4 rounded-xl text-base font-medium flex items-center gap-2">
+          <a href="/products" className="bg-primary hover:bg-primary/90 text-white group px-8 py-4 rounded-xl text-base font-medium flex items-center gap-2">
             Explore Our Products <ArrowRight className="group-hover:translate-x-2 transition-transform duration-300" size={18} />
           </a>
 

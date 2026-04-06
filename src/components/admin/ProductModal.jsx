@@ -7,10 +7,14 @@ const ProductModal = ({
   saving,
   error,
   message,
+  selectedImageFile,
+  imageUploading,
   onClose,
   onSubmit,
   onReset,
   onFieldChange,
+  onImageFileChange,
+  onUploadImage,
   onExtraFieldChange,
   onAddExtraField,
   onRemoveExtraField,
@@ -41,7 +45,7 @@ const ProductModal = ({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-[#a4d145] hover:text-slate-900"
+            className="rounded-xl border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-[#50b8af] hover:text-slate-900"
           >
             Close
           </button>
@@ -56,23 +60,66 @@ const ProductModal = ({
               <input
                 value={form.name}
                 onChange={(event) => onFieldChange("name", event.target.value)}
-                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[#a4d145] focus:ring-2 focus:ring-[#a4d145]/20"
+                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[#50b8af] focus:ring-2 focus:ring-[#50b8af]/20"
                 placeholder="Product name"
                 required
               />
             </label>
 
-            <label className="block">
+            <div className="block">
               <span className="mb-2 block text-sm font-medium text-slate-700">
-                Image URL
+                Product Image
               </span>
-              <input
-                value={form.image}
-                onChange={(event) => onFieldChange("image", event.target.value)}
-                className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[#a4d145] focus:ring-2 focus:ring-[#a4d145]/20"
-                placeholder="https://..."
-              />
-            </label>
+
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={onImageFileChange}
+                  className="block w-full text-sm text-slate-600 file:mr-4 file:rounded-xl file:border-0 file:bg-[#50b8af] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-[#3fa79f]"
+                />
+
+                <div className="mt-3 flex flex-wrap items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={onUploadImage}
+                    disabled={imageUploading || !selectedImageFile}
+                    className="rounded-xl bg-[#50b8af] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#3fa79f] disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {imageUploading ? "Uploading..." : "Upload Image"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onFieldChange("image", "")}
+                    className="rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-[#50b8af] hover:text-slate-900"
+                  >
+                    Clear
+                  </button>
+                </div>
+
+                <div className="mt-4 space-y-2">
+                  {selectedImageFile ? (
+                    <p className="text-xs text-slate-500">
+                      Selected file: {selectedImageFile.name}
+                    </p>
+                  ) : null}
+
+                  {form.image ? (
+                    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+                      <img
+                        src={form.image}
+                        alt="Product preview"
+                        className="h-40 w-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <p className="text-xs text-slate-500">
+                      Upload an image to populate the product image URL.
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
 
           <label className="block">
@@ -82,7 +129,7 @@ const ProductModal = ({
             <textarea
               value={form.description}
               onChange={(event) => onFieldChange("description", event.target.value)}
-              className="min-h-32 w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[#a4d145] focus:ring-2 focus:ring-[#a4d145]/20"
+              className="min-h-32 w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[#50b8af] focus:ring-2 focus:ring-[#50b8af]/20"
               placeholder="Product description"
               required
             />
@@ -109,7 +156,7 @@ const ProductModal = ({
               checked={form.isActive}
               onChange={(event) => onFieldChange("isActive", event.target.checked)}
               type="checkbox"
-              className="h-4 w-4 rounded border-slate-300 text-[#a4d145] focus:ring-[#a4d145]"
+              className="h-4 w-4 rounded border-slate-300 text-[#50b8af] focus:ring-[#50b8af]"
             />
             <span className="text-sm font-medium text-slate-700">Active</span>
           </label>
@@ -122,7 +169,7 @@ const ProductModal = ({
               <button
                 type="button"
                 onClick={onAddExtraField}
-                className="text-xs font-semibold uppercase tracking-[0.18em] text-[#416900]"
+                className="text-xs font-semibold uppercase tracking-[0.18em] text-[#50b8af]"
               >
                 Add Field
               </button>
@@ -136,7 +183,7 @@ const ProductModal = ({
                     onChange={(event) =>
                       onExtraFieldChange(index, "key", event.target.value)
                     }
-                    className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm outline-none focus:border-[#a4d145] focus:ring-2 focus:ring-[#a4d145]/20"
+                    className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm outline-none focus:border-[#50b8af] focus:ring-2 focus:ring-[#50b8af]/20"
                     placeholder="Field name"
                   />
                   <input
@@ -144,7 +191,7 @@ const ProductModal = ({
                     onChange={(event) =>
                       onExtraFieldChange(index, "value", event.target.value)
                     }
-                    className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm outline-none focus:border-[#a4d145] focus:ring-2 focus:ring-[#a4d145]/20"
+                    className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm outline-none focus:border-[#50b8af] focus:ring-2 focus:ring-[#50b8af]/20"
                     placeholder="Value"
                   />
                   <button
@@ -182,7 +229,7 @@ const ProductModal = ({
             <button
               type="button"
               onClick={onReset}
-              className="rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-[#a4d145] hover:text-slate-900"
+              className="rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-[#50b8af] hover:text-slate-900"
             >
               Reset
             </button>

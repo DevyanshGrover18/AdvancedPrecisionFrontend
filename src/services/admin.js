@@ -45,6 +45,21 @@ export const loginAdmin = async ({ username, password }) => {
   return token;
 };
 
+export const uploadProductImage = async ({ image, productId } = {}) => {
+  if (!image) {
+    throw new Error("Select an image file to upload.");
+  }
+
+  const formData = new FormData();
+  formData.append("image", image);
+
+  if (productId) {
+    formData.append("productId", productId);
+  }
+
+  return adminApi.post("/api/products/upload-image", formData);
+};
+
 export const adminApi = {
   get: (path, options = {}) =>
     api.get(path, { ...options, token: options.token ?? getAdminToken() }),
