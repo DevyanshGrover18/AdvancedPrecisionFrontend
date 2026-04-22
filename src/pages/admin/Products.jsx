@@ -59,7 +59,11 @@ const buildPayload = (form) => {
       return;
     }
 
-    if (["name", "description", "image", "details", "isActive"].includes(trimmedKey)) {
+    if (
+      ["name", "description", "image", "details", "isActive"].includes(
+        trimmedKey,
+      )
+    ) {
       return;
     }
 
@@ -70,7 +74,12 @@ const buildPayload = (form) => {
 };
 
 const Products = () => {
-  const { products, setProducts, loading, error: loadError } = useAdminProducts();
+  const {
+    products,
+    setProducts,
+    loading,
+    error: loadError,
+  } = useAdminProducts();
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
@@ -80,7 +89,9 @@ const Products = () => {
   const [selectedImageFile, setSelectedImageFile] = useState(null);
   const [imageUploading, setImageUploading] = useState(false);
 
-  const activeCount = products.filter((product) => product.isActive !== false).length;
+  const activeCount = products.filter(
+    (product) => product.isActive !== false,
+  ).length;
 
   const resetForm = () => {
     setEditingId(null);
@@ -124,7 +135,7 @@ const Products = () => {
   const removeExtraField = (index) => {
     setForm((current) => {
       const extraFields = current.extraFields.filter(
-        (_, fieldIndex) => fieldIndex !== index
+        (_, fieldIndex) => fieldIndex !== index,
       );
       return {
         ...current,
@@ -173,6 +184,7 @@ const Products = () => {
       });
 
       const imageUrl =
+        response?.url ??
         response?.imageUrl ??
         response?.data?.imageUrl ??
         response?.data?.product?.image ??
@@ -208,7 +220,9 @@ const Products = () => {
       return;
     }
 
-    const confirmed = window.confirm(`Delete ${product.name ?? "this product"}?`);
+    const confirmed = window.confirm(
+      `Delete ${product.name ?? "this product"}?`,
+    );
     if (!confirmed) {
       return;
     }
@@ -220,13 +234,15 @@ const Products = () => {
     try {
       await adminApi.delete(`/api/products/${productId}`);
       setProducts((current) =>
-        current.filter((item) => (item.id ?? item._id) !== productId)
+        current.filter((item) => (item.id ?? item._id) !== productId),
       );
       if (editingId === productId) {
         resetForm();
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to delete product.");
+      setError(
+        err instanceof Error ? err.message : "Failed to delete product.",
+      );
     } finally {
       setSaving(false);
     }
@@ -244,7 +260,10 @@ const Products = () => {
       let savedProduct;
 
       if (editingId) {
-        savedProduct = await adminApi.put(`/api/products/${editingId}`, payload);
+        savedProduct = await adminApi.put(
+          `/api/products/${editingId}`,
+          payload,
+        );
       } else {
         savedProduct = await adminApi.post("/api/products", payload);
       }

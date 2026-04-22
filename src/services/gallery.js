@@ -45,15 +45,13 @@ const normalizeGalleryItems = (payload) => {
       candidate &&
       typeof candidate === "object" &&
       !Array.isArray(candidate) &&
-      (
-        "image" in candidate ||
+      ("image" in candidate ||
         "url" in candidate ||
         "imageUrl" in candidate ||
         "path" in candidate ||
         "location" in candidate ||
         "_id" in candidate ||
-        "id" in candidate
-      )
+        "id" in candidate)
     ) {
       return [candidate];
     }
@@ -111,17 +109,25 @@ export const normalizeGalleryImage = (item, index = 0) => {
   };
 };
 
-export const normalizeGalleryImages = (payload) =>
-  normalizeGalleryItems(payload).map((item, index) =>
-    normalizeGalleryImage(item, index),
-  );
+export const normalizeGalleryImages = (response) => {
+  const items = response?.images ?? response?.data ?? response ?? [];
+  return Array.isArray(items)
+    ? items.map((item) => ({
+        ...item,
+        id: item.id ?? item._id,
+        resolvedImage: item.resolvedImage ?? item.url ?? item.image ?? "",
+      }))
+    : [];
+};
 
 export const getGalleryImages = async () => {
   return api.get("/api/gallery");
 };
 
 export const uploadGalleryImages = async (files) => {
-  const selectedFiles = Array.from(files ?? []).filter(Boolean).slice(0, 10);
+  const selectedFiles = Array.from(files ?? [])
+    .filter(Boolean)
+    .slice(0, 10);
 
   if (!selectedFiles.length) {
     throw new Error("Select at least one image to upload.");
