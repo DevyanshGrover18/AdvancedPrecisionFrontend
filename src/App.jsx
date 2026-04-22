@@ -15,6 +15,7 @@ import AdminOverview from './pages/admin/Overview';
 import AdminProducts from './pages/admin/Products';
 import AdminGallery from './pages/admin/Gallery';
 import PublicGallery from './pages/Gallery';
+import ScrollToTop from './components/ScrollToTop';
 
 const AppShell = () => {
   const location = useLocation();
@@ -22,6 +23,7 @@ const AppShell = () => {
 
   return (
     <div>
+      <ScrollToTop />
       {!isAdminRoute ? <Navbar /> : null}
         <Routes>
           <Route path='/' element={<Home/>} />

@@ -1,20 +1,77 @@
-import React from "react";
-import { Cpu, Globe, Mail, Share2, MapPin, Phone, Map } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { MapPin, Phone, ReceiptIndianRupee } from "lucide-react";
+import { api } from "../services/api";
 
 const quickLinks = [
   { title: "Our Mission", slug: "our-mission" },
   { title: "Management", slug: "management" },
   { title: "Human Resource", slug: "human-resource" },
-  {title: "Media", slug: "gallery"},
-];
-const productLinks = [
-  "PET Molds",
-  "PP Containers",
-  "Cap & Closures",
-  "Custom Molds",
 ];
 
+const fallbackProductLinks = [
+  "IBM MOLD",
+  "PET PREFORM MOLD",
+  "ASB SERIES SINGLE STAGE MOLD"
+];
+
+const normalizeProducts = (payload) => {
+  if (Array.isArray(payload)) {
+    return payload;
+  }
+
+  if (Array.isArray(payload?.products)) {
+    return payload.products;
+  }
+
+  if (Array.isArray(payload?.data)) {
+    return payload.data;
+  }
+
+  if (Array.isArray(payload?.data?.products)) {
+    return payload.data.products;
+  }
+
+  return [];
+};
+
+const resolveTitle = (product, index) =>
+  product?.name ??
+  product?.title ??
+  product?.productName ??
+  `Product ${index + 1}`;
+
 const Footer = () => {
+  const [productLinks, setProductLinks] = useState(fallbackProductLinks);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadProducts = async () => {
+      try {
+        const response = await api.get("/api/products");
+        const nextLinks = normalizeProducts(response)
+          .filter((product) => product.isActive !== false)
+          .slice(0, 4)
+          .map((product, index) => resolveTitle(product, index));
+
+        if (isMounted && nextLinks.length > 0) {
+          setProductLinks(nextLinks);
+        }
+      } catch {
+        if (isMounted) {
+          setProductLinks(fallbackProductLinks);
+        }
+      }
+    };
+
+    loadProducts();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <footer className="bg-slate-100 text-slate-800 pt-10 pb-4 px-6 md:px-20 border-slate-800">
       <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
@@ -49,14 +106,15 @@ const Footer = () => {
           <ul className="space-y-4 text-sm">
             {quickLinks.map((l) => (
               <li key={l.slug}>
-                <a
-                  href={`about-us/?tab=${l.slug}`}
+                <Link
+                  to={`/about-us?tab=${l.slug}`}
                   className="hover:text-primary transition-colors"
                 >
                   {l.title}
-                </a>
+                </Link>
               </li>
             ))}
+            <li><Link to='/gallery' >Media</Link></li>
           </ul>
         </div>
 
@@ -68,9 +126,9 @@ const Footer = () => {
           <ul className="space-y-4 text-sm">
             {productLinks.map((l) => (
               <li key={l}>
-                <a href="#" className="hover:text-primary transition-colors">
+                <Link to="/products" className="hover:text-primary transition-colors">
                   {l}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -85,9 +143,9 @@ const Footer = () => {
             <div className="flex items-start gap-3">
               <MapPin size={20} className="text-secondary shrink-0 mt-0.5" />
               <p>
-                123 Industrial Hub, Tech City,
+                P-37 Sector-3 Bawana Industrial Area, New Delhi, India
                 <br />
-                Pin - 400001, India
+                Pin - 110034
               </p>
             </div>
             <div className="flex gap-3 items-center">
@@ -96,6 +154,12 @@ const Footer = () => {
                 <p>+91 73039 37438</p>
                 <p>+91 88828 50571</p>
                 <p>+91 70044 14127</p>
+              </div>
+            </div>
+            <div className="flex gap-3 items-center">
+              <ReceiptIndianRupee size={20} className="text-secondary shrink-0" />
+              <div className="flex gap-2">
+                <strong>GST</strong> - 07CGAPK8374H1Z6
               </div>
             </div>
             
