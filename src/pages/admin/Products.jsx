@@ -3,6 +3,7 @@ import ProductModal from "../../components/admin/ProductModal";
 import ProductsPanel from "../../components/admin/ProductsPanel";
 import { adminApi, uploadProductImage } from "../../services/admin";
 import useAdminProducts from "./useAdminProducts";
+import { extractRichText, stripHtml } from "../../utils/richText";
 
 const emptyExtraField = () => ({ key: "", value: "" });
 
@@ -23,6 +24,12 @@ const splitProductFields = (product) => {
     "description",
     "image",
     "details",
+    "moreDetails",
+    "summary",
+    "content",
+    "body",
+    "html",
+    "richText",
     "isActive",
     "createdAt",
     "updatedAt",
@@ -43,11 +50,19 @@ const splitProductFields = (product) => {
 };
 
 const buildPayload = (form) => {
+  const summary = form.description.trim();
+  const richText = form.details.trim();
+
   const payload = {
     name: form.name.trim(),
-    description: form.description.trim(),
+    description: richText || summary,
+    summary,
     image: form.image.trim(),
-    details: form.details.trim(),
+    details: richText,
+    moreDetails: richText,
+    content: richText,
+    body: richText,
+    richText,
     isActive: Boolean(form.isActive),
   };
 
@@ -60,7 +75,7 @@ const buildPayload = (form) => {
     }
 
     if (
-      ["name", "description", "image", "details", "isActive"].includes(
+      ["name", "description", "image", "details", "moreDetails", "isActive"].includes(
         trimmedKey,
       )
     ) {
@@ -148,9 +163,10 @@ const Products = () => {
     setEditingId(product.id ?? product._id ?? null);
     setForm({
       name: product.name ?? "",
-      description: product.description ?? "",
+      description:
+        product.summary ?? stripHtml(product.description ?? extractRichText(product)),
       image: product.image ?? "",
-      details: product.details ?? product.moreDetails ?? "",
+      details: extractRichText(product),
       isActive: product.isActive !== false,
       extraFields: splitProductFields(product),
     });
@@ -269,11 +285,16 @@ const Products = () => {
       }
 
       const nextProduct =
-        savedProduct?.product ??
-        savedProduct?.data?.product ??
-        savedProduct?.data ??
-        savedProduct ??
-        payload;
+        {
+          ...(editingId
+            ? products.find((item) => (item.id ?? item._id) === editingId) ?? {}
+            : {}),
+          ...payload,
+          ...(savedProduct?.data ?? {}),
+          ...(savedProduct?.data?.product ?? {}),
+          ...(savedProduct?.product ?? {}),
+          ...(savedProduct ?? {}),
+        };
 
       setProducts((current) => {
         if (editingId) {

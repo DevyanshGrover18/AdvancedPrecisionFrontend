@@ -16,6 +16,7 @@ import AdminProducts from './pages/admin/Products';
 import AdminGallery from './pages/admin/Gallery';
 import PublicGallery from './pages/Gallery';
 import ScrollToTop from './components/ScrollToTop';
+import ProductDetailPage from './components/products/ProductsDetailPage';
 
 const AppShell = () => {
   const location = useLocation();
@@ -29,6 +30,7 @@ const AppShell = () => {
           <Route path='/' element={<Home/>} />
           <Route path='/home' element={<Home/>} />
           <Route path='/products' element={<ProductsPage/>} />
+          <Route path='/products/:id' element={<ProductDetailPage/>} />
           <Route path='/about-us' element={<AboutPage/>} />
           <Route path='/infrastructure' element={<InfrastructurePage/>} />
           <Route path='/design-and-engineering' element={<DesignEngineeringPage/>} />

@@ -122,31 +122,18 @@ const ProductModal = ({
             </div>
           </div>
 
-          <label className="block">
-            <span className="mb-2 block text-sm font-medium text-slate-700">
-              Description
-            </span>
-            <textarea
-              value={form.description}
-              onChange={(event) => onFieldChange("description", event.target.value)}
-              className="min-h-32 w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[#50b8af] focus:ring-2 focus:ring-[#50b8af]/20"
-              placeholder="Product description"
-              required
-            />
-          </label>
-
           <div className="space-y-2">
             <div>
               <span className="mb-2 block text-sm font-medium text-slate-700">
-                More Details
+                Description
               </span>
               <p className="text-xs leading-5 text-slate-500">
                 Add longer formatted content for specs, features, or notes.
               </p>
             </div>
             <RichTextEditor
-              value={form.details}
-              onChange={(html) => onFieldChange("details", html)}
+              value={form.description}
+              onChange={(html) => onFieldChange("description", html)}
               placeholder="Add rich text details..."
             />
           </div>
@@ -161,50 +148,6 @@ const ProductModal = ({
             <span className="text-sm font-medium text-slate-700">Active</span>
           </label>
 
-          <div className="rounded-2xl border border-slate-200 p-4">
-            <div className="mb-3 flex items-center justify-between">
-              <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-slate-700">
-                Extra Fields
-              </h3>
-              <button
-                type="button"
-                onClick={onAddExtraField}
-                className="text-xs font-semibold uppercase tracking-[0.18em] text-[#50b8af]"
-              >
-                Add Field
-              </button>
-            </div>
-
-            <div className="space-y-3">
-              {form.extraFields.map((field, index) => (
-                <div key={index} className="grid gap-2 md:grid-cols-[1fr_1fr_auto]">
-                  <input
-                    value={field.key}
-                    onChange={(event) =>
-                      onExtraFieldChange(index, "key", event.target.value)
-                    }
-                    className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm outline-none focus:border-[#50b8af] focus:ring-2 focus:ring-[#50b8af]/20"
-                    placeholder="Field name"
-                  />
-                  <input
-                    value={field.value}
-                    onChange={(event) =>
-                      onExtraFieldChange(index, "value", event.target.value)
-                    }
-                    className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm outline-none focus:border-[#50b8af] focus:ring-2 focus:ring-[#50b8af]/20"
-                    placeholder="Value"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => onRemoveExtraField(index)}
-                    className="rounded-xl border border-slate-300 px-3 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-slate-600"
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
 
           {error ? (
             <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">

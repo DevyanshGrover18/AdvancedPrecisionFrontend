@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+@import "tailwindcss";
 
 /* Apply globally */
 *,
@@ -21,41 +21,78 @@ button:disabled {
   cursor: not-allowed;
 }
 
-.tiptap p {
+.tiptap,
+.rich-text-content {
+  color: #1e293b;
+}
+
+.tiptap p,
+.rich-text-content p {
   margin: 0.75rem 0;
 }
 
-.tiptap p:first-child {
+.tiptap p:first-child,
+.rich-text-content p:first-child {
   margin-top: 0;
 }
 
-.tiptap p:last-child {
+.tiptap p:last-child,
+.rich-text-content p:last-child {
   margin-bottom: 0;
 }
 
 .tiptap ul,
-.tiptap ol {
+.tiptap ol,
+.rich-text-content ul,
+.rich-text-content ol {
   margin: 0.75rem 0;
   padding-left: 1.5rem;
 }
 
-.tiptap li {
+.tiptap ul,
+.rich-text-content ul {
+  list-style: disc;
+}
+
+.tiptap ol,
+.rich-text-content ol {
+  list-style: decimal;
+}
+
+.tiptap li,
+.rich-text-content li {
   margin: 0.25rem 0;
 }
 
 .tiptap h2,
-.tiptap h3 {
+.tiptap h3,
+.rich-text-content h2,
+.rich-text-content h3 {
   margin: 1rem 0 0.5rem;
   font-weight: 700;
   line-height: 1.2;
+  color: #0f172a;
 }
 
-.tiptap h2 {
+.tiptap h2,
+.rich-text-content h2 {
   font-size: 1.5rem;
 }
 
-.tiptap h3 {
+.tiptap h3,
+.rich-text-content h3 {
   font-size: 1.25rem;
+}
+
+.tiptap strong,
+.rich-text-content strong {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.tiptap em,
+.rich-text-content em {
+  font-style: italic;
 }
 
 .tiptap p.is-editor-empty:first-child::before {

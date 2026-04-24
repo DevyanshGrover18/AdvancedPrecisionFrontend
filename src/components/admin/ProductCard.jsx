@@ -1,6 +1,11 @@
+import { stripHtml } from "../../utils/richText";
+
 const ProductCard = ({ product, onEdit, onDelete }) => {
   const title = product.name ?? "Product";
-  const desc = product.description ?? "No description available.";
+  const desc =
+    product.summary ||
+    stripHtml(product.description ?? product.details ?? "") ||
+    "No description available.";
   const img = product.image;
   const isActive = product.isActive !== false;
 
@@ -29,7 +34,6 @@ const ProductCard = ({ product, onEdit, onDelete }) => {
           {isActive ? "Active" : "Inactive"}
         </div>
         <h3 className="text-lg font-bold text-slate-900 sm:text-xl">{title}</h3>
-        <p className="mt-2 text-sm leading-6 text-slate-600 sm:mt-3">{desc}</p>
 
         <div className="mt-5 flex gap-3 pt-4">
           <button

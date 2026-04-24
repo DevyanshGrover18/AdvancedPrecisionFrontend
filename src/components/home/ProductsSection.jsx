@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
+import { stripHtml } from "../../utils/richText";
 
 const normalizeProducts = (payload) => {
   if (Array.isArray(payload)) {
@@ -37,9 +38,9 @@ const resolveTitle = (product, index) =>
   `Product ${index + 1}`;
 
 const resolveDescription = (product) =>
-  product?.description ??
-  product?.shortDescription ??
-  product?.details ??
+  product?.summary ||
+  product?.shortDescription ||
+  stripHtml(product?.details ?? product?.description ?? "") ||
   "";
 
 const ProductsSection = () => {

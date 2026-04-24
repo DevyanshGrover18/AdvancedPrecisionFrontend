@@ -24,7 +24,7 @@ const RichTextEditor = ({ value, onChange, placeholder = "Write more details..."
     editorProps: {
       attributes: {
         class:
-          "tiptap min-h-40 rounded-b-2xl border border-slate-300 bg-white px-4 py-3 text-sm leading-7 text-slate-800 outline-none focus:border-[#50b8af] focus:ring-2 focus:ring-[#50b8af]/20",
+          "tiptap min-h-40 rounded-b-2xl border border-slate-300 bg-white px-4 py-3 text-sm leading-7 text-slate-800 caret-slate-900 outline-none focus:border-[#50b8af] focus:ring-2 focus:ring-[#50b8af]/20",
       },
     },
     onUpdate: ({ editor: currentEditor }) => {
