@@ -82,7 +82,7 @@ const HeroSection = () => {
         <div className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-md border border-[#50b8af] px-3 py-1 rounded-full">
           <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
           <span className="text-secondary text-xs font-bold uppercase tracking-widest">
-            Industry Leader
+            REVOLUTION TO THINK END USER’S
           </span>
         </div>
 

@@ -7,13 +7,14 @@ import {useSearchParams} from "react-router-dom";
 
 const aboutSections = [
   {
-    label: "Our Mission",
+    label: "Mission & Vision",
     slug: "our-mission",
     title: "Engineered to solve real manufacturing problems.",
     image: "/about1.jpg",
     body: [
-      "Our mission is to provide reliable, high-performance mold solutions that enhance production efficiency and product quality for our clients.",
-      "We aim to build long-term partnerships by delivering precision, consistency, and value in every project we undertake.",
+      "All research, development, designing, manufacturing, molding trials, mold & machine services in a single platform — with innovation & development facilities to preserve the rights of customers to identify and express.",
+      "His vision to our vision.",
+      "Providing cost-efficient solutions to achieve good quality products, while also enhancing cavitation with a possible extension to determine bottle behaviours and their consequences.",
     ],
     stats: [
       { label: "Years in market", value: "25+" },

@@ -60,7 +60,7 @@ const AboutContent = ({ content }) => (
     <div className="space-y-4">
       {content.body.map((para, i) => (
         <Reveal key={para} delay={0.15 + i * 0.08}>
-          <p className="text-gray-600 text-md leading-relaxed">{para}</p>
+          <p className={`text-gray-600 text-md leading-relaxed ${content.label === "Mission & Vision" && i === 1 ? "font-semibold": ""}`}>{para}</p>
         </Reveal>
       ))}
     </div>
